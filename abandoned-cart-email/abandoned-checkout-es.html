@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{ shop.name }}</title></head>
+<body style="margin:0;padding:0;background:#000;font-family:Arial,Helvetica,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#000;"><tr><td align="center" style="padding:24px 12px;">
+<table width="560" cellpadding="0" cellspacing="0" role="presentation" style="max-width:560px;width:100%;background:#0b0b0b;border:1px solid #ff1a2b;">
+<tr><td align="center" style="padding:26px 20px 6px;color:#ff4d5a;font-size:12px;letter-spacing:3px;text-transform:uppercase;">{{ shop.name }}</td></tr>
+<tr><td align="center" style="padding:6px 24px 6px;color:#ffffff;font-size:28px;font-weight:800;line-height:1.2;">¡Tu camiseta te está esperando! ⚽</td></tr>
+<tr><td align="center" style="padding:6px 28px 20px;color:#dddddd;font-size:16px;line-height:1.5;">Dejaste estos productos en tu carrito. Aún los tenemos apartados para ti, pero las tallas se agotan rápido.</td></tr>
+<tr><td style="padding:0 24px;">
+<table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+{% for line in subtotal_line_items %}
+<tr><td width="84" style="padding:10px 0;border-top:1px solid #2a2a2a;">{% if line.image %}<img src="{{ line | img_url: 'compact_cropped' }}" width="72" height="72" alt="{{ line.title | escape }}" style="display:block;border-radius:6px;">{% endif %}</td>
+<td style="padding:10px 12px;border-top:1px solid #2a2a2a;color:#ffffff;font-size:15px;line-height:1.4;"><b>{{ line.title }}</b>{% if line.variant_title %}<br><span style="color:#aaaaaa;font-size:13px;">{{ line.variant_title }}</span>{% endif %}<br><span style="color:#aaaaaa;font-size:13px;">x {{ line.quantity }}</span></td>
+<td align="right" style="padding:10px 0;border-top:1px solid #2a2a2a;color:#ff4d5a;font-size:15px;font-weight:700;white-space:nowrap;">{{ line.line_price | money }}</td></tr>
+{% endfor %}
+</table></td></tr>
+<tr><td align="center" style="padding:24px 24px 8px;"><a href="{{ url }}" style="display:inline-block;background:#ff1a2b;color:#ffffff;text-decoration:none;font-weight:800;font-size:16px;letter-spacing:1px;text-transform:uppercase;padding:15px 36px;border-radius:999px;">Terminar mi compra</a></td></tr>
+<tr><td align="center" style="padding:6px 24px 18px;color:#aaaaaa;font-size:13px;">Tu carrito se guarda por tiempo limitado.</td></tr>
+<tr><td style="padding:0 24px 22px;"><table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#160305;border:1px solid #3a0a10;"><tr>
+<td align="center" width="33%" style="padding:14px 6px;color:#ffffff;font-size:12px;line-height:1.4;"><b style="color:#ff1a2b;font-size:15px;">30 días</b><br>de garantía</td>
+<td align="center" width="33%" style="padding:14px 6px;color:#ffffff;font-size:12px;line-height:1.4;border-left:1px solid #3a0a10;border-right:1px solid #3a0a10;"><b style="color:#ff1a2b;font-size:15px;">GRATIS</b><br>envío a todo el mundo</td>
+<td align="center" width="33%" style="padding:14px 6px;color:#ffffff;font-size:12px;line-height:1.4;"><b style="color:#ff1a2b;font-size:15px;">5-7 días</b><br>entrega estimada</td></tr></table></td></tr>
+<tr><td align="center" style="padding:0 24px 26px;color:#dddddd;font-size:14px;">¿Dudas con tu talla o tu pedido? Escríbenos por <a href="https://wa.me/525512941852" style="color:#25d366;font-weight:700;text-decoration:none;">WhatsApp +52 55 1294 1852</a></td></tr>
+</table>
+<p style="color:#777777;font-size:11px;margin:16px 0 0;">{{ shop.name }}</p>
+</td></tr></table></body></html>

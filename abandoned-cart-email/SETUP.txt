@@ -1,0 +1,7 @@
+ABANDONED CART EMAIL (Shopify built-in)
+
+1) Shopify admin > Settings > Checkout (or Settings > Checkout and accounts) > "Abandoned checkouts" > turn ON "Automatically send abandoned checkout emails" and choose timing (recommended: 1 hour).
+2) Settings > Notifications > Customer notifications > "Abandoned checkout" > Edit code.
+   - English: paste abandoned-checkout-en.html as the template. Subject: Your jersey is waiting for you at {{ shop.name }}
+   - Spanish: Settings > Languages > Español > Translate/Edit templates > Abandoned checkout, paste abandoned-checkout-es.html. Subject: Tu camiseta te espera en {{ shop.name }}
+3) Click Preview and send a test email to yourself. Save.
