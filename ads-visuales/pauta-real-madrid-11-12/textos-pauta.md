@@ -29,7 +29,7 @@ Reabrimos nuestra página web y volvió una de las más pedidas: la retro 11/12 
 $46 USD, envío gratis. Las tallas vuelan.
 
 ## Título (máx. 40 caracteres)
-- Negro y oro. Retro 11/12 · $46 USD
+- Real Madrid Retro 11/12 · $46 USD
 - Real Madrid Visitante 11/12 Retro
 - Envío gratis + 30 días de garantía
 
