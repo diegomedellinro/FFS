@@ -181,3 +181,44 @@ por:
 Shopify > Configuración > Detalles de la tienda > Teléfono: cámbialo a 55 1294 1852.
 La política de privacidad todavía dice "+52 55 7218 6030". Después de cambiar el teléfono,
 busca ese número en Configuración > Políticas > Política de privacidad y reemplázalo por +52 55 1294 1852.
+
+
+#####################################################################
+6) PENDIENTES DETECTADOS EL 10/OCT (revisión de las políticas publicadas)
+#####################################################################
+
+A) INFORMACIÓN DE CONTACTO (Configuración > Políticas > Información de contacto)
+   Cambia "TTrade name" por "Trade name" (tiene una T de más).
+
+B) TÉRMINOS DEL SERVICIO: QUITAR TEXTO DE PLANTILLA (Google lo marca)
+   1. Borra completa esta línea de la SECCIÓN 9:
+        [NOTE TO MERCHANT: This section accurately characterizes Shopify’s relationship with your store and should not be removed or modified.]
+   2. Reemplaza cada "[LINK]" (aparece 4 veces):
+        - Después de "Privacy Policy" / "privacy policy" (3 veces, en el inicio y en la sección 10):
+            https://footballfrenzy.shop/policies/privacy-policy
+        - Después de "Refund Policy" (1 vez, sección 3):
+            https://footballfrenzy.shop/policies/refund-policy
+   3. SECCIÓN 4, reemplaza:
+        Unless otherwise expressly stated, posted prices do not include taxes, shipping, handling, customs or import charges.
+      por:
+        Shipping is always free. Posted prices do not include customs or import charges, which some countries may charge when the package arrives.
+   4. SECCIÓN 4, punto (iv), reemplaza:
+        including shipping and handling charges and all applicable taxes, if any.
+      por:
+        and all applicable taxes, if any.
+   5. Repite lo mismo en la versión en español (Idiomas > Español > Traducir > Políticas),
+      si la traducción también tiene "[LINK]" o "[NOTA PARA EL COMERCIANTE...]".
+
+C) MERCHANT CENTER, EN ESTE ORDEN
+   1. Botón "Verificar identidad" (aparece junto a "No estoy de acuerdo con el tema").
+      Sin esto no te deja pedir la revisión.
+   2. Configuración > Información de la empresa:
+        Nombre: Football Frenzy Shop
+        Dirección: Iglesia 270, Torre I, Depto 305, Col. Tizapán San Ángel, 01090, Ciudad de México
+        Teléfono: +52 55 1294 1852 (verifícalo con el código SMS)
+        Sitio web: https://footballfrenzy.shop (verificado y reclamado)
+        Servicio al cliente: correo + WhatsApp
+   3. "Solicitud de enlace de cuenta de Google Ads pendiente": apruébala si esa cuenta de Google Ads es tuya.
+   4. "Problemas de capacidad": se arreglan solos cuando quitan la suspensión. No hagas nada ahí.
+   5. Al final, "No estoy de acuerdo con el tema" > pedir revisión.
+      Hazlo hasta que A, B y C1-C2 estén listos: si la rechazan, te bloquean varios días antes de poder pedir otra.
