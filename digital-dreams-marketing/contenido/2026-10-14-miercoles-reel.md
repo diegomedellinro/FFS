@@ -2,6 +2,7 @@
 
 - **Serie:** POV del emprendedor · **Duración:** 15–20 s · **Formato:** 9:16
 - **Portada:** `imagenes/2026-10-14-reel-pov-cliente-ideal/portada-reel.png`
+- **Video motion graphic (listo para subir):** `videos/2026-10-14-reel-pov-cliente-ideal.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 19:00
 - **Por qué funciona:** el formato POV + humor de identificación es de los más compartidos por DM ("jajaja eres tú"). Termina con una lección rápida que posiciona a la agencia.
 

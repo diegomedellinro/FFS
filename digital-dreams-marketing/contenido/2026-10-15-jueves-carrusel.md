@@ -2,6 +2,7 @@
 
 - **Serie:** Plantillas que venden · **Formato:** Carrusel 7 slides
 - **Imágenes:** `imagenes/2026-10-15-carrusel-bio-que-vende/`
+- **Video motion graphic (listo para subir):** `videos/2026-10-15-post-bio-que-vende.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 12:30
 - **Por qué funciona:** las plantillas "copia y pega" son el contenido más guardado del nicho. El antes/después hace tangible el valor.
 

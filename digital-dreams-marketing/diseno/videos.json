@@ -1,0 +1,92 @@
+[
+  {
+    "id": "2026-10-13-post-errores-marca",
+    "format": "post",
+    "scenes": [
+      { "type": "hook", "dur": 3600, "kicker": "Errores de marca", "title": "5 errores que hacen que tu marca se vea <em>amateur</em>", "sub": "(y cómo arreglarlos hoy mismo)" },
+      { "type": "tip", "dur": 3800, "num": "01", "title": "Usar 5 tipografías distintas", "body": "Elige 2: una para títulos y otra para textos." },
+      { "type": "tip", "dur": 3800, "num": "02", "title": "Un logo pixelado o estirado", "body": "Tenlo en PNG transparente, vertical y horizontal." },
+      { "type": "tip", "dur": 3800, "num": "03", "title": "Colores al azar en cada post", "body": "Define una paleta de 3 a 5 colores y no salgas de ella." },
+      { "type": "tip", "dur": 3800, "num": "04", "title": "Una bio que no dice qué haces", "body": "En 3 segundos deben entender qué vendes y para quién." },
+      { "type": "tip", "dur": 3800, "num": "05", "title": "Cada post parece de otra marca", "body": "Crea 3 o 4 plantillas fijas. Consistencia = recordación." },
+      { "type": "cta", "dur": 4200, "title": "¿Cuántos tenías?", "body": "Guárdalo y envíaselo a ese amigo que está emprendiendo.", "action": "Comenta MARCA" }
+    ]
+  },
+  {
+    "id": "2026-10-14-reel-pov-cliente-ideal",
+    "format": "reel",
+    "scenes": [
+      { "type": "hook", "dur": 2800, "kicker": "POV", "title": "Le preguntas a un emprendedor quién es su <em>cliente ideal</em>" },
+      { "type": "chat", "dur": 5200, "msgs": [
+        { "side": "left", "name": "Agencia", "text": "¿Y quién es tu cliente ideal?" },
+        { "side": "right", "name": "Emprendedor", "text": "¡Todo el mundo! 🌎" },
+        { "side": "left", "name": "Agencia", "text": "…" }
+      ] },
+      { "type": "big", "dur": 1800, "emoji": "😐", "text": "Silencio incómodo" },
+      { "type": "hook", "dur": 3400, "kicker": "La verdad", "title": "Si le hablas a todos, no le hablas a <em>nadie</em>" },
+      { "type": "list", "dur": 4400, "title": "Define 3 cosas:", "items": ["Edad y estilo de vida", "El problema que le resuelves", "Dónde pasa su tiempo"] },
+      { "type": "cta", "dur": 3600, "title": "Envíaselo a ese amigo que vende “para todos” 😂", "action": "Compartir" }
+    ]
+  },
+  {
+    "id": "2026-10-15-post-bio-que-vende",
+    "format": "post",
+    "scenes": [
+      { "type": "hook", "dur": 3400, "kicker": "Plantillas que venden", "title": "La fórmula para una bio que <em>vende</em>", "sub": "4 líneas. Guárdala." },
+      { "type": "tip", "dur": 3400, "num": "01", "title": "A quién ayudas", "body": "“Ayudo a restaurantes…”" },
+      { "type": "tip", "dur": 3400, "num": "02", "title": "El resultado", "body": "“…a llenar mesas entre semana”" },
+      { "type": "tip", "dur": 3400, "num": "03", "title": "La prueba", "body": "Un número, un logro o un dato real." },
+      { "type": "tip", "dur": 3400, "num": "04", "title": "La acción", "body": "“Agenda tu diagnóstico gratis ↓”" },
+      { "type": "compare", "dur": 5200, "title": "Antes vs. después", "before": "Repostería artesanal · Hecho con amor", "after": "Tortas personalizadas a domicilio · Tu celebración, sin estrés · Pide la tuya en 2 clics ↓" },
+      { "type": "cta", "dur": 4000, "title": "Tu turno", "body": "Escribe tu nueva bio en los comentarios y te damos feedback.", "action": "Guárdalo" }
+    ]
+  },
+  {
+    "id": "2026-10-16-reel-deja-de-hacer",
+    "format": "reel",
+    "scenes": [
+      { "type": "hook", "dur": 2800, "kicker": "Deja de hacer esto", "title": "3 cosas que tu marca debe dejar de hacer <em>YA</em> en Instagram" },
+      { "type": "stop", "dur": 4200, "num": "1", "title": "Usar tu perfil como catálogo de precios", "body": "La gente sigue cuentas que enseñan, entretienen o inspiran." },
+      { "type": "stop", "dur": 4200, "num": "2", "title": "Pedir likes", "body": "Pide guardados y compartidos: eso mueve tu alcance hoy." },
+      { "type": "stop", "dur": 4200, "num": "3", "title": "Desaparecer y volver con 5 posts", "body": "La constancia le gana a la intensidad." },
+      { "type": "cta", "dur": 3600, "title": "¿Cuál estabas haciendo?", "body": "Cuéntanos en comentarios 👇", "action": "Comenta" }
+    ]
+  },
+  {
+    "id": "2026-10-17-post-checklist",
+    "format": "post",
+    "scenes": [
+      { "type": "hook", "dur": 3400, "kicker": "Checklist Dreams", "title": "¿Tu marca está lista para <em>vender</em>?", "sub": "10 puntos. Cuenta cuántos cumples." },
+      { "type": "list", "dur": 4600, "title": "Identidad", "items": ["Logo en alta calidad", "Paleta de colores definida", "2 tipografías fijas", "Tono de voz claro"] },
+      { "type": "list", "dur": 4600, "title": "Presencia digital", "items": ["Bio que explica qué vendes", "Enlace que funciona", "Destacadas ordenadas", "Foto de perfil reconocible"] },
+      { "type": "list", "dur": 3600, "title": "Confianza", "items": ["Testimonios visibles", "Respuestas en menos de 24 h"] },
+      { "type": "score", "dur": 4400, "title": "¿Cuántos marcaste?", "rows": [["8–10", "Vas muy bien"], ["5–7", "Hay dinero sobre la mesa"], ["0–4", "Tu marca te está frenando"]] },
+      { "type": "cta", "dur": 3600, "title": "Te enviamos el PDF", "body": "Comenta CHECKLIST y te llega por mensaje directo.", "action": "Comenta CHECKLIST" }
+    ]
+  },
+  {
+    "id": "2026-10-18-reel-ganchos",
+    "format": "reel",
+    "scenes": [
+      { "type": "hook", "dur": 2800, "kicker": "Tienes 3 segundos", "title": "Copia estos ganchos para tus <em>reels</em> 👇" },
+      { "type": "quote", "dur": 2800, "num": "1", "text": "“Nadie te dice esto sobre…”" },
+      { "type": "quote", "dur": 2800, "num": "2", "text": "“Deja de hacer esto si tienes un…”" },
+      { "type": "quote", "dur": 2800, "num": "3", "text": "“El error que me costó…”" },
+      { "type": "quote", "dur": 2800, "num": "4", "text": "“Si vendes ___, mira esto”" },
+      { "type": "quote", "dur": 2800, "num": "5", "text": "“Lo hice durante 30 días y pasó esto”" },
+      { "type": "cta", "dur": 3400, "title": "Guárdalo antes de grabar tu próximo reel", "action": "Guardar 📌" }
+    ]
+  },
+  {
+    "id": "2026-10-19-post-mito-logo",
+    "format": "post",
+    "scenes": [
+      { "type": "hook", "dur": 3200, "kicker": "Mito vs. realidad", "title": "Tu marca <em>no</em> es tu logo" },
+      { "type": "myth", "dur": 4400, "myth": "Branding = logo bonito", "truth": "Branding es lo que dicen de ti cuando no estás en la sala." },
+      { "type": "myth", "dur": 4400, "myth": "Con un buen diseño ya vendo", "truth": "El diseño atrae. La confianza y la experiencia venden." },
+      { "type": "myth", "dur": 4400, "myth": "El branding es para grandes empresas", "truth": "Mientras más pequeño eres, más necesitas que te recuerden." },
+      { "type": "list", "dur": 4600, "title": "Tu marca es:", "items": ["Lo que prometes", "Cómo hablas", "Cómo atiendes", "Cómo se ve todo", "Lo que sienten al comprarte"] },
+      { "type": "cta", "dur": 3600, "title": "¿Estás de acuerdo?", "body": "Envíaselo a quien solo piensa en su logo.", "action": "Comenta" }
+    ]
+  }
+]

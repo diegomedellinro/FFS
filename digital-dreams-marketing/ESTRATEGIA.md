@@ -71,8 +71,10 @@ Fuentes: [Quickframe – Reels 2026](https://quickframe.com/blog/instagram-reels
 
 ## 6. Cómo usar esta carpeta
 
-- `contenido/` — una ficha por día con: idea, guion del reel o texto del carrusel, copy listo para pegar, hashtags y horario.
-- `imagenes/` — las slides de los carruseles y las portadas de los reels, listas para subir (PNG).
-- `diseno/` — plantilla y script para regenerar las imágenes: `node digital-dreams-marketing/diseno/render.js`.
+- `galeria.html` — la semana completa en vista visual: videos, slides y copy con botón de copiar.
+- `videos/` — los posts (4:5) y reels (9:16) en motion graphic, MP4 listos para subir, con su portada PNG. No llevan música: agrega un audio en tendencia desde Instagram.
+- `imagenes/` — las slides de los carruseles en PNG (para publicar como carrusel en vez de video, si prefieres).
+- `contenido/` — una ficha por día con idea, texto, copy, hashtags y horario.
+- `diseno/` — identidad visual (logo, tipografía, colores verde/negro) y los scripts que generan todo: `motion.js` (videos), `render.js` (slides), `galeria.py` (galería).
 
 Métricas a revisar cada semana: **compartidos, guardados, alcance a no seguidores, retención promedio del reel y DMs recibidos**. Repite y crea "parte 2" de lo que mejor funcione.

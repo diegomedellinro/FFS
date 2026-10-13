@@ -2,6 +2,7 @@
 
 - **Serie:** Mito vs. Realidad · **Formato:** Carrusel 6 slides
 - **Imágenes:** `imagenes/2026-10-19-carrusel-mito-logo/`
+- **Video motion graphic (listo para subir):** `videos/2026-10-19-post-mito-logo.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 12:30
 - **Por qué funciona:** una afirmación que contradice lo que la mayoría cree genera comentarios y debate; el formato mito/realidad se lee rápido y se comparte.
 

@@ -2,6 +2,7 @@
 
 - **Serie:** Deja de hacer esto · **Duración:** 25–30 s · **Formato:** 9:16
 - **Portada:** `imagenes/2026-10-16-reel-deja-de-hacer/portada-reel.png`
+- **Video motion graphic (listo para subir):** `videos/2026-10-16-reel-deja-de-hacer.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 19:30
 - **Por qué funciona:** el molde "3 cosas que dejé de hacer / deja de hacer" es de los formatos más repetidos en reels virales; el tono directo genera comentarios y debate.
 

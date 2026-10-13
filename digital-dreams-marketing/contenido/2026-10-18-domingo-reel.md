@@ -2,6 +2,7 @@
 
 - **Serie:** Tips rápidos · **Duración:** 20–25 s · **Formato:** 9:16
 - **Portada:** `imagenes/2026-10-18-reel-ganchos/portada-reel.png`
+- **Video motion graphic (listo para subir):** `videos/2026-10-18-reel-ganchos.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 18:00
 - **Por qué funciona:** es contenido "meta" que todos los emprendedores quieren guardar para usar; cada gancho aparece en pantalla, así que obliga a pausar o volver a ver (sube retención).
 

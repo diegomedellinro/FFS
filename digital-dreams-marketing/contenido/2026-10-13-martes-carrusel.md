@@ -2,6 +2,7 @@
 
 - **Serie:** Errores de marca · **Formato:** Carrusel 7 slides (1080×1350)
 - **Imágenes:** `imagenes/2026-10-13-carrusel-errores-marca/` (subir en orden slide-01 → slide-07)
+- **Video motion graphic (listo para subir):** `videos/2026-10-13-post-errores-marca.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 12:30 o 19:30
 - **Por qué funciona:** lista numerada + miedo a "verse poco profesional" = alta identificación y muchos guardados. El CTA de comentar "MARCA" genera conversaciones (posibles clientes).
 

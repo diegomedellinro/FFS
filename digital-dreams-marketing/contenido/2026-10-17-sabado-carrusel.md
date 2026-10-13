@@ -2,6 +2,7 @@
 
 - **Serie:** Checklist Dreams · **Formato:** Carrusel 5 slides
 - **Imágenes:** `imagenes/2026-10-17-carrusel-checklist/`
+- **Video motion graphic (listo para subir):** `videos/2026-10-17-post-checklist.mp4` — agrega un audio en tendencia desde Instagram.
 - **Hora sugerida:** 11:00 (fin de semana la gente revisa con calma)
 - **Por qué funciona:** los checklists se guardan muchísimo, y el "comenta CHECKLIST" convierte la publicación en generador de contactos por DM.
 
