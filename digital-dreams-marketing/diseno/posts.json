@@ -1,0 +1,69 @@
+[
+  {
+    "id": "2026-10-13-carrusel-errores-marca",
+    "type": "carousel",
+    "slides": [
+      { "kind": "cover", "kicker": "Errores de marca", "title": "5 errores que hacen que tu marca se vea <em>amateur</em>", "body": "(y cómo arreglarlos hoy mismo)" },
+      { "kind": "tip", "num": "01", "title": "Usar 5 tipografías distintas", "body": "Elige 2: una para títulos y otra para textos. Úsalas en todo: posts, web, menú, tarjetas." },
+      { "kind": "tip", "num": "02", "title": "Un logo pixelado o estirado", "body": "Ten tu logo en PNG con fondo transparente y en versión vertical y horizontal. Nunca lo deformes." },
+      { "kind": "tip", "num": "03", "title": "Colores al azar en cada post", "body": "Define una paleta de 3 a 5 colores con su código HEX y no salgas de ella." },
+      { "kind": "tip", "num": "04", "title": "Una bio que no dice qué haces", "body": "En 3 segundos alguien debe entender: qué vendes, para quién y cómo comprarte." },
+      { "kind": "tip", "num": "05", "title": "Cada publicación parece de otra marca", "body": "Crea 3 o 4 plantillas fijas. La consistencia es lo que hace que te reconozcan sin ver tu nombre." },
+      { "kind": "cta", "title": "¿Cuántos tenías?", "body": "Guárdalo para revisar tu marca y envíaselo a ese amigo que está emprendiendo.", "action": "Comenta MARCA y te decimos qué mejorar" }
+    ]
+  },
+  {
+    "id": "2026-10-14-reel-pov-cliente-ideal",
+    "type": "cover",
+    "kicker": "POV del emprendedor",
+    "title": "POV: le preguntas a un emprendedor quién es su cliente ideal"
+  },
+  {
+    "id": "2026-10-15-carrusel-bio-que-vende",
+    "type": "carousel",
+    "slides": [
+      { "kind": "cover", "kicker": "Plantillas que venden", "title": "La fórmula para una bio de Instagram que <em>vende</em>", "body": "Plantilla incluida. Guárdala." },
+      { "kind": "tip", "num": "01", "title": "Línea 1: a quién ayudas", "body": "No digas lo que eres. Di a quién sirves.\n\n\"Ayudo a restaurantes…\"" },
+      { "kind": "tip", "num": "02", "title": "Línea 2: el resultado", "body": "La transformación que buscan.\n\n\"…a llenar mesas entre semana\"" },
+      { "kind": "tip", "num": "03", "title": "Línea 3: la prueba", "body": "Un número, un logro o un dato.\n\n\"+120 negocios atendidos\"" },
+      { "kind": "tip", "num": "04", "title": "Línea 4: la acción", "body": "Qué hacer ahora, con un solo enlace.\n\n\"Agenda tu diagnóstico gratis ↓\"" },
+      { "kind": "compare", "title": "Antes vs. después", "before": "Repostería artesanal\nHecho con amor\nPedidos por DM", "after": "Tortas personalizadas a domicilio\nTu celebración, sin estrés\n+500 eventos endulzados\nPide la tuya en 2 clics ↓" },
+      { "kind": "cta", "title": "Tu turno", "body": "Escribe tu nueva bio en los comentarios y te damos feedback.", "action": "Envíaselo a quien necesite cambiar su bio" }
+    ]
+  },
+  {
+    "id": "2026-10-16-reel-deja-de-hacer",
+    "type": "cover",
+    "kicker": "Deja de hacer esto",
+    "title": "3 cosas que tu marca debe dejar de hacer YA en Instagram"
+  },
+  {
+    "id": "2026-10-17-carrusel-checklist",
+    "type": "carousel",
+    "slides": [
+      { "kind": "cover", "kicker": "Checklist Dreams", "title": "¿Tu marca está lista para <em>vender</em>?", "body": "10 puntos. Si fallas en 3 o más, lee hasta el final." },
+      { "kind": "list", "title": "Identidad", "items": ["Logo en alta calidad y versiones", "Paleta de colores definida", "2 tipografías fijas", "Tono de voz claro (cómo hablas)"] },
+      { "kind": "list", "title": "Presencia digital", "items": ["Bio que explica qué vendes", "Enlace funcional (web o WhatsApp)", "Historias destacadas ordenadas", "Foto de perfil reconocible"] },
+      { "kind": "list", "title": "Confianza", "items": ["Testimonios o reseñas visibles", "Respuestas en menos de 24 h"] },
+      { "kind": "cta", "title": "¿Cuántos marcaste?", "body": "8–10: vas muy bien.\n5–7: hay dinero sobre la mesa.\n0–4: tu marca te está frenando.", "action": "Comenta CHECKLIST y te enviamos la versión PDF" }
+    ]
+  },
+  {
+    "id": "2026-10-18-reel-ganchos",
+    "type": "cover",
+    "kicker": "Tips rápidos",
+    "title": "5 frases para que no pasen tu reel en los primeros 3 segundos"
+  },
+  {
+    "id": "2026-10-19-carrusel-mito-logo",
+    "type": "carousel",
+    "slides": [
+      { "kind": "cover", "kicker": "Mito vs. realidad", "title": "Tu marca <em>no</em> es tu logo", "body": "Esto es lo que realmente es (y por qué importa más)." },
+      { "kind": "myth", "myth": "Branding = logo bonito", "truth": "Branding es lo que la gente dice de ti cuando no estás en la sala." },
+      { "kind": "myth", "myth": "Con un buen diseño ya vendo", "truth": "El diseño atrae. El mensaje, la experiencia y la confianza venden." },
+      { "kind": "myth", "myth": "El branding es solo para grandes empresas", "truth": "Mientras más pequeño eres, más necesitas que te recuerden." },
+      { "kind": "list", "title": "Tu marca es:", "items": ["Lo que prometes", "Cómo hablas", "Cómo atiendes", "Cómo se ve todo", "Lo que sienten al comprarte"] },
+      { "kind": "cta", "title": "¿Estás de acuerdo?", "body": "Cuéntanos en comentarios cuál de estos mitos creías.", "action": "Envíaselo a quien solo piensa en su logo" }
+    ]
+  }
+]
