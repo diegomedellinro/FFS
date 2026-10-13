@@ -1,0 +1,251 @@
+<title>DigitalDreams Semana 1</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap');
+/* Layout: una tira por día, video a la izquierda y copy a la derecha; colores de la marca (negro + verde lima), tema único oscuro. */
+:root {
+  --bg: #050705; --surface: #0D130C; --line: #1F2A1C; --fg: #EEF5EA; --muted: #95A58F; --lime: #8FF20E; --green: #3FA80F; --ink: #041004;
+  --display: 'Crimson Pro', Georgia, serif; --body: 'Inter Tight', system-ui, sans-serif;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.5; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 40px 20px 80px; }
+header { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; justify-content: space-between; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand img { width: 52px; height: 52px; }
+.brand b { font-family: var(--display); font-weight: 400; font-size: 34px; color: #fff; }
+header p { color: var(--muted); margin: 0; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 6vw, 60px); line-height: 1.02; margin: 36px 0 8px; text-wrap: balance; }
+h1 em { font-style: normal; color: var(--lime); }
+.lede { color: var(--muted); max-width: 62ch; margin: 0 0 20px; }
+nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 40px; }
+nav a { color: var(--fg); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+nav a:hover, nav a:focus-visible { border-color: var(--lime); color: var(--lime); outline: none; }
+.day { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 32px; padding: 36px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+.media video { width: 100%; display: block; border-radius: 14px; background: #000; border: 1px solid var(--line); }
+.reel .media video { aspect-ratio: 9 / 16; }
+.post .media video { aspect-ratio: 4 / 5; }
+.info { min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 0; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.date { color: var(--lime); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.pill { border: 1px solid var(--green); color: var(--fg); border-radius: 999px; padding: 2px 10px; }
+h2 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.1; margin: 0; text-wrap: balance; }
+.why { margin: 0; color: var(--muted); max-width: 65ch; }
+.slides { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; }
+.slides img { width: 112px; flex: none; border-radius: 8px; border: 1px solid var(--line); }
+.copybox { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.copyhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px 10px 16px; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+button.copy { font: 600 14px var(--body); color: var(--ink); background: var(--lime); border: 0; border-radius: 8px; padding: 8px 14px; cursor: pointer; }
+button.copy:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+pre { margin: 0; padding: 16px; white-space: pre-wrap; word-wrap: break-word; font: 15px/1.55 var(--body); color: var(--fg); }
+footer { border-top: 1px solid var(--line); padding-top: 24px; color: var(--muted); font-size: 14px; }
+@media (max-width: 720px) { .day { grid-template-columns: minmax(0, 1fr); } .media { max-width: 360px; } }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMxRTZFMEEiLz48c3RvcCBvZmZzZXQ9Ii41NSIgc3RvcC1jb2xvcj0iIzREQkExMiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzhGRjIwRSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iciIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM4RkYyMEUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzRkE4MEYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJ1cmwoI2cpIi8+CiAgPHBhdGggZD0iTTM2IDAgQyA3MCAyNSwgMzAgNzUsIDY0IDEwMCBMIDUwIDEwMCBDIDE4IDc1LCA1OCAyNSwgMjIgMCBaIiBmaWxsPSJ1cmwoI3IpIiBvcGFjaXR5PSIuODUiLz4KICA8cGF0aCBkPSJNMTQgMzYgaDEzIGExNCAxNCAwIDAgMSAwIDI4IGgtMTMgeiIgZmlsbD0iIzAwMCIvPgogIDxwYXRoIGQ9Ik04NiAzNiBoLTEzIGExNCAxNCAwIDAgMCAwIDI4IGgxMyB6IiBmaWxsPSIjMDAwIi8+Cjwvc3ZnPgo=" alt=""><b>DigitalDreams</b></div>
+    <p>Contenido de Instagram y Facebook · semana del 13 al 19 de octubre</p>
+  </header>
+  <h1>Siete días de contenido, <em>listos para subir</em></h1>
+  <p class="lede">Cada día trae su video en motion graphic, las slides del carrusel cuando es post y el copy para pegar. Los videos no llevan música: agrega en Instagram un audio en tendencia antes de publicar.</p>
+  <nav><a href="#d13">Martes 13</a><a href="#d14">Miércoles 14</a><a href="#d15">Jueves 15</a><a href="#d16">Viernes 16</a><a href="#d17">Sábado 17</a><a href="#d18">Domingo 18</a><a href="#d19">Lunes 19</a></nav>
+  
+  <article class="day post" id="d13">
+    <div class="media"><video src="videos/2026-10-13-post-errores-marca.mp4" poster="videos/2026-10-13-post-errores-marca-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Martes 13 oct</span><span class="pill">Post 4:5 · video + carrusel</span><span class="time">12:30 o 19:30</span></p>
+      <h2>5 errores que hacen que tu marca se vea amateur</h2>
+      <p class="why">lista numerada + miedo a &quot;verse poco profesional&quot; = alta identificación y muchos guardados. El CTA de comentar &quot;MARCA&quot; genera conversaciones (posibles clientes).</p>
+      <div class="slides" aria-label="Slides del carrusel"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-01.png" alt="Slide 1" loading="lazy"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-02.png" alt="Slide 2" loading="lazy"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-03.png" alt="Slide 3" loading="lazy"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-04.png" alt="Slide 4" loading="lazy"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-05.png" alt="Slide 5" loading="lazy"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-06.png" alt="Slide 6" loading="lazy"><img src="imagenes/2026-10-13-carrusel-errores-marca/slide-07.png" alt="Slide 7" loading="lazy"></div>
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>¿Tu marca se ve profesional… o se ve “hecha en 5 minutos”? 👀
+
+La gente decide si confía en tu negocio en segundos, y casi siempre lo decide por cómo se ve.
+
+Estos son los 5 errores de branding que más vemos en emprendimientos (y la buena noticia: todos se arreglan rápido):
+
+1️⃣ Demasiadas tipografías
+2️⃣ Logo pixelado o deformado
+3️⃣ Colores sin paleta
+4️⃣ Una bio que no explica qué haces
+5️⃣ Publicaciones sin coherencia visual
+
+¿Cuántos tenías? Sé honesto 😅
+
+💬 Comenta “MARCA” y te decimos qué mejorarías primero en tu perfil.
+📌 Guárdalo para revisar tu marca este fin de semana.
+
+#branding #identidaddemarca #emprendedores #marketingdigital #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <article class="day reel" id="d14">
+    <div class="media"><video src="videos/2026-10-14-reel-pov-cliente-ideal.mp4" poster="videos/2026-10-14-reel-pov-cliente-ideal-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Miércoles 14 oct</span><span class="pill">Reel 9:16</span><span class="time">19:00</span></p>
+      <h2>POV cliente ideal = &quot;todo el mundo&quot;</h2>
+      <p class="why">el formato POV + humor de identificación es de los más compartidos por DM (&quot;jajaja eres tú&quot;). Termina con una lección rápida que posiciona a la agencia.</p>
+      
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>“¿Mi cliente ideal? ¡Todo el mundo!” 🌎😅
+
+Si alguna vez dijiste esto, tranqui… todos pasamos por ahí.
+
+Pero cuando le hablas a todos, tu mensaje se diluye y nadie siente que es para él.
+
+Empieza respondiendo 3 preguntas:
+👉 ¿Qué edad y estilo de vida tiene?
+👉 ¿Qué problema le resuelves?
+👉 ¿Dónde pasa su tiempo (redes, lugares, contenidos)?
+
+Con eso tu branding, tus anuncios y tus textos cambian por completo.
+
+📩 Envíaselo a ese amigo que vende “para todos”.
+
+#emprendimiento #marketingdigital #clienteideal #branding #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <article class="day post" id="d15">
+    <div class="media"><video src="videos/2026-10-15-post-bio-que-vende.mp4" poster="videos/2026-10-15-post-bio-que-vende-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Jueves 15 oct</span><span class="pill">Post 4:5 · video + carrusel</span><span class="time">12:30</span></p>
+      <h2>La fórmula para una bio de Instagram que vende</h2>
+      <p class="why">las plantillas &quot;copia y pega&quot; son el contenido más guardado del nicho. El antes/después hace tangible el valor.</p>
+      <div class="slides" aria-label="Slides del carrusel"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-01.png" alt="Slide 1" loading="lazy"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-02.png" alt="Slide 2" loading="lazy"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-03.png" alt="Slide 3" loading="lazy"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-04.png" alt="Slide 4" loading="lazy"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-05.png" alt="Slide 5" loading="lazy"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-06.png" alt="Slide 6" loading="lazy"><img src="imagenes/2026-10-15-carrusel-bio-que-vende/slide-07.png" alt="Slide 7" loading="lazy"></div>
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>Tu bio tiene 150 caracteres para convencer a alguien de quedarse… ¿los estás aprovechando? 🤔
+
+Usa esta fórmula de 4 líneas:
+
+1. A quién ayudas
+2. Qué resultado logras
+3. Una prueba (número, logro, dato)
+4. Qué hacer ahora (con un solo enlace)
+
+Desliza para ver un antes y después real 👉
+
+✍️ Escribe tu nueva bio en los comentarios y te damos feedback (sí, a todos).
+📌 Guárdala para cuando la vayas a cambiar.
+
+#instagramtips #marketingdigital #emprendedores #biodeinstagram #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <article class="day reel" id="d16">
+    <div class="media"><video src="videos/2026-10-16-reel-deja-de-hacer.mp4" poster="videos/2026-10-16-reel-deja-de-hacer-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Viernes 16 oct</span><span class="pill">Reel 9:16</span><span class="time">19:30</span></p>
+      <h2>3 cosas que tu marca debe dejar de hacer YA en Instagram</h2>
+      <p class="why">el molde &quot;3 cosas que dejé de hacer / deja de hacer&quot; es de los formatos más repetidos en reels virales; el tono directo genera comentarios y debate.</p>
+      
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>3 cosas que tu marca debe dejar de hacer YA en Instagram 🚫
+
+1️⃣ Usar tu perfil como catálogo de precios
+2️⃣ Pedir likes (lo que te da alcance hoy son los guardados y los compartidos)
+3️⃣ Desaparecer semanas y volver publicando todo de golpe
+
+La buena noticia: corregirlas no cuesta dinero, solo estrategia.
+
+👇 ¿Cuál estabas haciendo? Sin juicios 😅
+📩 Compártelo con tu socio o con quien maneja tus redes.
+
+#instagramparanegocios #marketingdigital #redessociales #emprendedores #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <article class="day post" id="d17">
+    <div class="media"><video src="videos/2026-10-17-post-checklist.mp4" poster="videos/2026-10-17-post-checklist-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Sábado 17 oct</span><span class="pill">Post 4:5 · video + carrusel</span><span class="time">11:00 (fin de semana la gente revisa con calma)</span></p>
+      <h2>¿Tu marca está lista para vender? (Checklist)</h2>
+      <p class="why">los checklists se guardan muchísimo, y el &quot;comenta CHECKLIST&quot; convierte la publicación en generador de contactos por DM.</p>
+      <div class="slides" aria-label="Slides del carrusel"><img src="imagenes/2026-10-17-carrusel-checklist/slide-01.png" alt="Slide 1" loading="lazy"><img src="imagenes/2026-10-17-carrusel-checklist/slide-02.png" alt="Slide 2" loading="lazy"><img src="imagenes/2026-10-17-carrusel-checklist/slide-03.png" alt="Slide 3" loading="lazy"><img src="imagenes/2026-10-17-carrusel-checklist/slide-04.png" alt="Slide 4" loading="lazy"><img src="imagenes/2026-10-17-carrusel-checklist/slide-05.png" alt="Slide 5" loading="lazy"></div>
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>Checklist rápido: ¿tu marca está lista para vender? ✅
+
+Antes de invertir en anuncios, revisa estos 10 puntos. Si tu marca no transmite confianza, cada peso en publicidad rinde menos.
+
+✔️ Identidad
+✔️ Presencia digital
+✔️ Confianza
+
+Desliza, haz el test y cuéntanos tu puntaje 👇
+
+💬 Comenta “CHECKLIST” y te enviamos la versión en PDF por DM.
+📌 Guárdalo para revisarlo con tu equipo.
+
+#branding #emprendimiento #pymes #marketingdigital #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <article class="day reel" id="d18">
+    <div class="media"><video src="videos/2026-10-18-reel-ganchos.mp4" poster="videos/2026-10-18-reel-ganchos-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Domingo 18 oct</span><span class="pill">Reel 9:16</span><span class="time">18:00</span></p>
+      <h2>5 frases para que no pasen tu reel en los primeros 3 segundos</h2>
+      <p class="why">es contenido &quot;meta&quot; que todos los emprendedores quieren guardar para usar; cada gancho aparece en pantalla, así que obliga a pausar o volver a ver (sube retención).</p>
+      
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>Tienes 3 segundos. Si no enganchas, te pasan. ⏱️
+
+Copia estos 5 ganchos y adáptalos a tu negocio:
+
+1. “Nadie te dice esto sobre…”
+2. “Deja de hacer esto si tienes un…”
+3. “El error que me costó…”
+4. “Si vendes ___, mira esto”
+5. “Lo hice durante 30 días y pasó esto”
+
+📌 Guárdalo antes de grabar tu próximo reel.
+💬 ¿Cuál vas a usar primero?
+
+#reelstips #marketingdigital #contenidodigital #emprendedores #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <article class="day post" id="d19">
+    <div class="media"><video src="videos/2026-10-19-post-mito-logo.mp4" poster="videos/2026-10-19-post-mito-logo-portada.png" controls muted loop playsinline preload="metadata"></video></div>
+    <div class="info">
+      <p class="meta"><span class="date">Lunes 19 oct</span><span class="pill">Post 4:5 · video + carrusel</span><span class="time">12:30</span></p>
+      <h2>Tu marca NO es tu logo (Mito vs. Realidad)</h2>
+      <p class="why">una afirmación que contradice lo que la mayoría cree genera comentarios y debate; el formato mito/realidad se lee rápido y se comparte.</p>
+      <div class="slides" aria-label="Slides del carrusel"><img src="imagenes/2026-10-19-carrusel-mito-logo/slide-01.png" alt="Slide 1" loading="lazy"><img src="imagenes/2026-10-19-carrusel-mito-logo/slide-02.png" alt="Slide 2" loading="lazy"><img src="imagenes/2026-10-19-carrusel-mito-logo/slide-03.png" alt="Slide 3" loading="lazy"><img src="imagenes/2026-10-19-carrusel-mito-logo/slide-04.png" alt="Slide 4" loading="lazy"><img src="imagenes/2026-10-19-carrusel-mito-logo/slide-05.png" alt="Slide 5" loading="lazy"><img src="imagenes/2026-10-19-carrusel-mito-logo/slide-06.png" alt="Slide 6" loading="lazy"></div>
+      <div class="copybox">
+        <div class="copyhead"><span>Copy para Instagram y Facebook</span><button type="button" class="copy">Copiar copy</button></div>
+        <pre>Opinión impopular: tu logo es lo menos importante de tu marca. 🔥
+
+Un buen logo ayuda, sí. Pero lo que hace que alguien te elija (y te recomiende) es todo lo demás:
+
+✨ Lo que prometes
+✨ Cómo hablas
+✨ Cómo atiendes
+✨ Cómo se ve todo
+✨ Lo que sienten al comprarte
+
+Branding es lo que dicen de ti cuando no estás en la sala.
+
+💬 ¿Estás de acuerdo o no? Te leemos.
+📩 Envíaselo a quien solo piensa en su logo.
+
+#branding #marcapersonal #identidaddemarca #emprendedores #DigitalDreamsMarketing</pre>
+      </div>
+    </div>
+  </article>
+  <footer>Agencia DigitalDreams · Marketing digital y branding</footer>
+</div>
+<script>
+document.querySelectorAll('button.copy').forEach((b) => b.addEventListener('click', () => {
+  const pre = b.closest('.copybox').querySelector('pre');
+  const done = () => { b.textContent = 'Copiado'; setTimeout(() => (b.textContent = 'Copiar copy'), 1600); };
+  const select = () => { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Seleccionado: copia con Ctrl+C'; };
+  try { navigator.clipboard.writeText(pre.textContent).then(done, select); } catch (e) { select(); }
+}));
+</script>
