@@ -188,22 +188,24 @@ class Banner:
     def __init__(self, layout):
         self.layout = layout
         if layout == "desktop":
-            self.W, self.H = 1920, 800
-            ph_h = 800
+            # the theme's video-banner section shows desktop at 2.8:1
+            self.W, self.H = 1920, 686
+            ph_h = 686
             ph_w = round(photo.width * ph_h / photo.height)
             self.photo_box = (1020, 0, ph_w, ph_h)
-            self.text, self.offer = text_block(1.0)
-            self.text_xy = (200, (self.H - self.text.height) // 2 + 40)
-            self.logo = logo_tile(150)
-            self.logo_xy = (200, self.text_xy[1] - self.logo.height - 36)
-            self.focus = (1020 + ph_w // 2, 420)
+            self.text, self.offer = text_block(0.9)
+            self.logo = logo_tile(120)
+            top = (self.H - self.text.height - self.logo.height - 28) // 2
+            self.logo_xy = (200, top)
+            self.text_xy = (200, top + self.logo.height + 28)
+            self.focus = (1020 + ph_w // 2, 360)
         else:
             self.W, self.H = 1080, 1350
-            ph_h = 1080
+            ph_h = 950
             ph_w = round(photo.width * ph_h / photo.height)
             self.photo_box = ((self.W - ph_w) // 2, 0, ph_w, ph_h)
             self.text, self.offer = text_block(0.92, align="center")
-            self.text_xy = ((self.W - self.text.width) // 2, self.H - self.text.height - 55)
+            self.text_xy = ((self.W - self.text.width) // 2, self.H - self.text.height - 225)  # room for the theme's button
             self.logo = logo_tile(150)
             self.logo_xy = (40, 40)
             self.focus = (self.W // 2, 520)
@@ -251,7 +253,7 @@ def render_video(b, path, seconds=8, fps=30):
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     video = "--video" in sys.argv
-    for layout, name in [("desktop", "portada-barca-desktop-1920x800"), ("mobile", "portada-barca-movil-1080x1350")]:
+    for layout, name in [("desktop", "portada-barca-desktop-1920x686"), ("mobile", "portada-barca-movil-v2-1080x1350")]:
         b = Banner(layout)
         b.frame().save(OUT + name + ".jpg", quality=92, optimize=True, progressive=True)
         if video:
