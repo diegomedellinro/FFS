@@ -1,0 +1,154 @@
+{%- liquid
+  assign slides = section.blocks
+  assign count = slides.size
+-%}
+{%- if count > 0 -%}
+<section class="ffs" id="ffs-{{ section.id }}" data-interval="{{ section.settings.interval | times: 1000 }}" aria-roledescription="carousel" aria-label="Promociones">
+  {%- assign first = slides.first -%}
+  {%- if first.settings.video != blank and first.settings.video.preview_image -%}
+    <link rel="preload" as="image" href="{{ first.settings.video.preview_image | image_url: width: 1600 }}" media="(min-width: 750px)" fetchpriority="high">
+    {%- if first.settings.video_mobile != blank and first.settings.video_mobile.preview_image -%}
+      <link rel="preload" as="image" href="{{ first.settings.video_mobile.preview_image | image_url: width: 1080 }}" media="(max-width: 749px)" fetchpriority="high">
+    {%- endif -%}
+  {%- endif -%}
+  <div class="ffs__box">
+    {%- for block in slides -%}
+      <div class="ffs__slide{% if forloop.first %} is-active{% endif %}" data-i="{{ forloop.index0 }}" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} / {{ count }}" {% unless forloop.first %}aria-hidden="true"{% endunless %} {{ block.shopify_attributes }}>
+        {%- if block.settings.video != blank -%}
+          {%- if block.settings.video_mobile != blank -%}
+            {{ block.settings.video | video_tag: class: 'ffs__d', autoplay: false, loop: true, muted: true, controls: false, playsinline: true, image_size: '1600x', preload: 'none' }}
+            {{ block.settings.video_mobile | video_tag: class: 'ffs__m', autoplay: false, loop: true, muted: true, controls: false, playsinline: true, image_size: '1080x', preload: 'none' }}
+          {%- else -%}
+            {{ block.settings.video | video_tag: class: 'ffs__c', autoplay: false, loop: true, muted: true, controls: false, playsinline: true, image_size: '1600x', preload: 'none' }}
+          {%- endif -%}
+        {%- elsif block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 2400 | image_tag: alt: block.settings.alt, widths: '800,1200,1800,2400', class: 'ffs__c', loading: 'lazy' }}
+        {%- endif -%}
+        {%- if block.settings.button_label != blank -%}
+          <a class="ffs__cta" href="{{ block.settings.button_link | default: routes.collections_url }}" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">{{ block.settings.button_label }}<span aria-hidden="true">&rarr;</span></a>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+    {%- if count > 1 -%}
+      <button type="button" class="ffs__arrow ffs__arrow--prev" aria-label="Anterior">&#8249;</button>
+      <button type="button" class="ffs__arrow ffs__arrow--next" aria-label="Siguiente">&#8250;</button>
+      <div class="ffs__dots">
+        {%- for block in slides -%}
+          <button type="button" class="ffs__dot{% if forloop.first %} is-active{% endif %}" data-i="{{ forloop.index0 }}" aria-label="Portada {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+<style>
+  .ffs{background:#000;padding:0}
+  .ffs__box{position:relative;display:grid;max-width:{{ section.settings.max_width }}px;margin:0 auto;line-height:0;overflow:hidden;touch-action:pan-y}
+  .ffs__slide{grid-area:1/1;position:relative;opacity:0;visibility:hidden;transition:opacity .7s ease,visibility 0s linear .7s}
+  .ffs__slide.is-active{opacity:1;visibility:visible;transition:opacity .7s ease,visibility 0s}
+  .ffs__slide video,.ffs__slide>img{width:100%;height:auto;display:block;pointer-events:none}
+  .ffs__m{display:none!important}
+  @media(min-width:750px){.ffs__d,.ffs__c{aspect-ratio:2.8/1;object-fit:cover;object-position:50% 36%}}
+  .ffs video::-webkit-media-controls,.ffs video::-webkit-media-controls-panel,.ffs video::-webkit-media-controls-play-button,.ffs video::-webkit-media-controls-start-playback-button,.ffs video::-webkit-media-controls-overlay-play-button,.ffs video::-webkit-media-controls-enclosure{display:none!important;opacity:0!important;-webkit-appearance:none}
+  .ffs__cta{position:absolute;bottom:12%;left:50%;translate:-50% 0;display:inline-flex;align-items:center;gap:9px;line-height:1;white-space:nowrap;background:#ff1a2b;color:#fff;text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(11px,1.35vw,18px);padding:clamp(9px,1.25vw,16px) clamp(16px,2.7vw,40px);border-radius:999px;animation:ffsPulse 2.4s ease-in-out infinite;transition:transform .25s,background .25s}
+  .ffs__cta span{transition:transform .25s}
+  .ffs__cta:hover{transform:translateY(-3px) scale(1.04);background:#fff;color:#ff1a2b}
+  .ffs__cta:hover span{transform:translateX(5px)}
+  @keyframes ffsPulse{50%{box-shadow:0 0 26px rgba(255,26,43,.75)}}
+  .ffs__arrow{position:absolute;top:50%;translate:0 -50%;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:rgba(0,0,0,.35);color:#fff;font-size:30px;line-height:1;cursor:pointer;opacity:0;transition:opacity .25s,background .25s;display:flex;align-items:center;justify-content:center;padding:0 0 4px}
+  .ffs__arrow--prev{left:16px}.ffs__arrow--next{right:16px}
+  .ffs__box:hover .ffs__arrow,.ffs__arrow:focus-visible{opacity:1}
+  .ffs__arrow:hover{background:#ff1a2b}
+  .ffs__dots{position:absolute;left:50%;bottom:4%;translate:-50% 0;z-index:2;display:flex;gap:8px;line-height:0}
+  .ffs__dot{width:9px;height:9px;padding:0;border:0;border-radius:999px;background:rgba(0,0,0,.28);cursor:pointer;transition:width .3s,background .3s}
+  .ffs__dot.is-active{width:26px;background:#ff1a2b}
+  @media(max-width:749px){
+    .ffs__d{display:none!important}
+    .ffs__m{display:block!important}
+    .ffs__c{aspect-ratio:4/3;object-fit:cover;object-position:10% 50%}
+    .ffs__cta{bottom:6%;font-size:13px;padding:11px 24px}
+    .ffs__arrow{display:none}
+    .ffs__dots{bottom:2%}
+  }
+  @media(prefers-reduced-motion:reduce){.ffs__cta{animation:none}.ffs__slide{transition:none}}
+</style>
+<script>
+  (function(){
+    var root=document.getElementById('ffs-{{ section.id }}');
+    if(!root)return;
+    var slides=[].slice.call(root.querySelectorAll('.ffs__slide'));
+    var dots=[].slice.call(root.querySelectorAll('.ffs__dot'));
+    var ms=parseInt(root.dataset.interval,10)||6000;
+    var cur=0,timer=null;
+    root.querySelectorAll('video').forEach(function(v){v.muted=true;v.defaultMuted=true;v.loop=true;v.controls=false;v.removeAttribute('controls');v.setAttribute('playsinline','');v.setAttribute('webkit-playsinline','');v.setAttribute('disablepictureinpicture','');v.setAttribute('disableremoteplayback','')});
+    function play(){
+      slides.forEach(function(s,i){
+        s.querySelectorAll('video').forEach(function(v){
+          if(i===cur&&v.offsetParent!==null){
+            v.muted=true;
+            if(v.preload==='none'){v.preload='auto';v.autoplay=true;v.load()}
+            if(v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){})}
+          }else if(!v.paused){v.pause()}
+        });
+      });
+      // warm up the next slide so the switch is instant
+      var n=slides[(cur+1)%slides.length];
+      if(n&&slides.length>1)n.querySelectorAll('video').forEach(function(v){if(v.offsetParent!==null&&v.preload==='none'){v.preload='auto';v.load()}});
+    }
+    function show(i){
+      if(!slides.length)return;
+      cur=(i+slides.length)%slides.length;
+      slides.forEach(function(s,k){var on=k===cur;s.classList.toggle('is-active',on);s.setAttribute('aria-hidden',on?'false':'true');var a=s.querySelector('.ffs__cta');if(a)a.tabIndex=on?0:-1});
+      dots.forEach(function(d,k){d.classList.toggle('is-active',k===cur)});
+      play();
+    }
+    function start(){stop();if(slides.length>1&&!document.hidden)timer=setInterval(function(){show(cur+1)},ms)}
+    function stop(){if(timer){clearInterval(timer);timer=null}}
+    function go(i){show(i);start()}
+    var prev=root.querySelector('.ffs__arrow--prev'),next=root.querySelector('.ffs__arrow--next');
+    if(prev)prev.addEventListener('click',function(){go(cur-1)});
+    if(next)next.addEventListener('click',function(){go(cur+1)});
+    dots.forEach(function(d){d.addEventListener('click',function(){go(parseInt(d.dataset.i,10))})});
+    var x0=null;
+    root.addEventListener('touchstart',function(e){x0=e.touches[0].clientX},{passive:true});
+    root.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)go(cur+(dx<0?1:-1));x0=null},{passive:true});
+    // pause on hover only with a real mouse (a tap on phones must not stop the rotation)
+    root.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')stop()});
+    root.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')start()});
+    document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else{play();start()}});
+    ['touchstart','click','scroll','pointerdown'].forEach(function(e){window.addEventListener(e,play,{passive:true})});
+    window.addEventListener('pageshow',play);
+    window.addEventListener('resize',play);
+    // theme editor: jump to the block being edited
+    document.addEventListener('shopify:block:select',function(e){var i=slides.indexOf(e.target);if(i>-1){stop();show(i)}});
+    document.addEventListener('shopify:block:deselect',start);
+    play();
+    var n=0,t=setInterval(function(){play();if(++n>10)clearInterval(t)},700);
+    start();
+  })();
+</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Portadas que rotan",
+  "settings": [
+    {"type": "range", "id": "interval", "min": 3, "max": 15, "step": 1, "default": 7, "unit": "s", "label": "Segundos por portada"},
+    {"type": "range", "id": "max_width", "min": 800, "max": 2400, "step": 100, "default": 2400, "unit": "px", "label": "Ancho máximo"}
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Portada",
+      "settings": [
+        {"type": "video", "id": "video", "label": "Video computadora (se reproduce como GIF)"},
+        {"type": "video", "id": "video_mobile", "label": "Video celular (vertical, opcional)"},
+        {"type": "image_picker", "id": "image", "label": "Imagen (si no hay video)"},
+        {"type": "text", "id": "alt", "label": "Descripción", "default": "Football Frenzy Shop"},
+        {"type": "text", "id": "button_label", "label": "Texto del botón", "default": "Shop now"},
+        {"type": "url", "id": "button_link", "label": "Link del botón"}
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{"name": "Portadas que rotan", "blocks": [{"type": "slide"}, {"type": "slide"}]}]
+}
+{% endschema %}
