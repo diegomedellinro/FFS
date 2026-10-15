@@ -1,0 +1,23 @@
+{%- assign ff_es = false -%}{%- if request.locale.iso_code == 'es' -%}{%- assign ff_es = true -%}{%- endif -%}
+{%- if cart != empty -%}
+<div class="ffst page-width">
+  <ol class="ffst__list">
+    <li class="ffst__step is-done"><span class="ffst__dot" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span class="ffst__lbl">{% if ff_es %}Carrito{% else %}Cart{% endif %}</span></li>
+    <li class="ffst__step is-active" aria-current="step"><span class="ffst__dot" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3zM14 9.5h4l3 3.5v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg></span><span class="ffst__lbl">{% if ff_es %}Entrega{% else %}Delivery{% endif %}</span></li>
+    <li class="ffst__step"><span class="ffst__dot" aria-hidden="true"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg></span><span class="ffst__lbl">{% if ff_es %}Pago{% else %}Payment{% endif %}</span></li>
+  </ol>
+</div>
+<style>
+  .ffst{padding-top:28px}
+  .ffst__list{list-style:none;margin:0 auto;padding:0;display:flex;justify-content:space-between;max-width:620px;position:relative}
+  .ffst__list::before{content:"";position:absolute;left:8%;right:8%;top:13px;height:1px;background:rgba(255,255,255,.35)}
+  .ffst__step{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:80px;font-size:1.3rem;color:rgba(255,255,255,.6)}
+  .ffst__dot{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgb(var(--color-background));border:1px solid rgba(255,255,255,.45);color:rgba(255,255,255,.7)}
+  .ffst__step.is-done .ffst__dot{border-color:#ff1a2b;color:#ff1a2b}
+  .ffst__step.is-active{color:#fff;font-weight:700}
+  .ffst__step.is-active .ffst__dot{border:1.5px solid #fff;color:#fff;box-shadow:0 0 0 3px rgba(255,26,43,.35)}
+</style>
+{%- endif -%}
+{% schema %}
+{"name": "Pasos de compra", "settings": [], "presets": [{"name": "Pasos de compra"}]}
+{% endschema %}

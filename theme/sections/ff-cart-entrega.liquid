@@ -1,0 +1,148 @@
+{%- assign ff_es = false -%}{%- if request.locale.iso_code == 'es' -%}{%- assign ff_es = true -%}{%- endif -%}
+{%- if cart != empty -%}
+<div class="ffe page-width" id="ffe-{{ section.id }}"
+  data-min="{{ section.settings.min_days }}" data-max="{{ section.settings.max_days }}"
+  data-checkout="{{ routes.root_url | append: '/checkout' | replace: '//', '/' }}"
+  data-lang="{% if ff_es %}es{% else %}en{% endif %}">
+  <form class="ffe__card" novalidate>
+    <h2 class="ffe__h">{% if ff_es %}Datos de contacto{% else %}Contact details{% endif %}</h2>
+    <label class="ffe__field">
+      <span class="visually-hidden">E-mail</span>
+      <input type="email" name="email" autocomplete="email" inputmode="email" placeholder="E-mail" required>
+    </label>
+    <p class="ffe__err" data-err="email" hidden>{% if ff_es %}Escribe un correo válido{% else %}Enter a valid email{% endif %}</p>
+
+    <h2 class="ffe__h ffe__h--2">{% if ff_es %}Entrega{% else %}Delivery{% endif %}</h2>
+    <label class="ffe__field ffe__field--cp">
+      <span class="visually-hidden">{% if ff_es %}Código Postal{% else %}Postal code{% endif %}</span>
+      <input type="text" name="zip" autocomplete="postal-code" inputmode="numeric" maxlength="5" placeholder="{% if ff_es %}Código Postal{% else %}Postal code{% endif %}" required>
+      <a class="ffe__nocp" href="https://www.correosdemexico.gob.mx/SSLServicios/ConsultaCP/Descarga.aspx" target="_blank" rel="noopener">{% if ff_es %}No sé mi CP{% else %}Find my code{% endif %}</a>
+    </label>
+    <p class="ffe__err" data-err="zip" hidden>{% if ff_es %}Debes completar este campo (5 dígitos){% else %}Please enter your 5-digit postal code{% endif %}</p>
+
+    <div class="ffe__opt" data-opt hidden>
+      <span class="ffe__radio" aria-hidden="true"></span>
+      <div class="ffe__opt-txt">
+        <p class="ffe__opt-t">{% if ff_es %}Envío estándar{% else %}Standard shipping{% endif %} · {{ section.settings.min_days }} {% if ff_es %}a{% else %}to{% endif %} {{ section.settings.max_days }} {% if ff_es %}días hábiles{% else %}business days{% endif %}</p>
+        <p class="ffe__opt-d" data-dates></p>
+      </div>
+      <span class="ffe__free">{% if ff_es %}Gratis{% else %}Free{% endif %}</span>
+    </div>
+
+    <div class="ffe__sum">
+      <div class="ffe__row"><span>Subtotal</span><span data-sub>{{ cart.items_subtotal_price | money }}</span></div>
+      <div class="ffe__row ffe__row--disc" data-disc-row {% if cart.total_discount == 0 %}hidden{% endif %}><span>{% if ff_es %}Descuentos{% else %}Discounts{% endif %}</span><span data-disc>-{{ cart.total_discount | money }}</span></div>
+      <div class="ffe__row"><span>{% if ff_es %}Costo de envío{% else %}Shipping{% endif %}</span><span>{% if ff_es %}Gratis{% else %}Free{% endif %}</span></div>
+      <div class="ffe__row ffe__row--tot"><span>Total</span><span data-tot>{{ cart.total_price | money }}</span></div>
+    </div>
+
+    <details class="ffe__coupon">
+      <summary>{% if ff_es %}Agregar cupón de descuento{% else %}Add a discount code{% endif %}</summary>
+      <label class="ffe__field"><span class="visually-hidden">{% if ff_es %}Cupón{% else %}Code{% endif %}</span><input type="text" name="discount" autocomplete="off" placeholder="{% if ff_es %}Ej. RETRO10{% else %}e.g. RETRO10{% endif %}"></label>
+      <p class="ffe__hint">{% if ff_es %}Se aplica en el siguiente paso.{% else %}It is applied in the next step.{% endif %}</p>
+    </details>
+
+    <button type="submit" class="ffe__btn">{% if ff_es %}Continuar para el pago{% else %}Continue to payment{% endif %}</button>
+    <p class="ffe__secure"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg> {% if ff_es %}Pago 100% seguro{% else %}100% secure payment{% endif %}</p>
+  </form>
+</div>
+<style>
+  .ffe{padding-top:8px;padding-bottom:48px}
+  .ffe [hidden]{display:none!important}
+  .ffe__card{max-width:620px;margin:0 auto;color:#fff}
+  .ffe__h{font-size:1.8rem;font-weight:600;margin:0 0 12px;letter-spacing:0}
+  .ffe__h--2{margin-top:28px}
+  .ffe__field{position:relative;display:block}
+  .ffe__field input{width:100%;box-sizing:border-box;background:#0d0d0d;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:3px;padding:15px 16px;font:inherit;font-size:1.6rem}
+  .ffe__field input:focus{outline:2px solid #ff1a2b;outline-offset:1px}
+  .ffe__field--cp input{padding-right:110px}
+  .ffe__nocp{position:absolute;right:14px;top:50%;translate:0 -50%;font-size:1.25rem;color:#fff;text-decoration:underline;text-underline-offset:3px}
+  .ffe__field.is-bad input{border-color:#ff1a2b}
+  .ffe__err{color:#ff4d5a;font-size:1.3rem;margin:8px 0 0;text-align:center}
+  .ffe__opt{display:flex;align-items:flex-start;gap:12px;margin-top:14px;padding:16px;background:#161616;border:1px solid rgba(255,255,255,.18);border-radius:3px}
+  .ffe__radio{flex:0 0 auto;width:16px;height:16px;margin-top:2px;border-radius:50%;border:2px solid #fff;box-shadow:inset 0 0 0 3px #161616;background:#ff1a2b}
+  .ffe__opt-txt{flex:1}
+  .ffe__opt-t{margin:0;font-size:1.4rem;color:#fff}
+  .ffe__opt-d{margin:4px 0 0;font-size:1.25rem;color:rgba(255,255,255,.65)}
+  .ffe__free{font-size:1.4rem;color:#fff}
+  .ffe__sum{margin-top:24px;border-top:1px solid rgba(255,255,255,.15);padding-top:14px}
+  .ffe__row{display:flex;justify-content:space-between;font-size:1.4rem;padding:5px 0;color:rgba(255,255,255,.85)}
+  .ffe__row--disc span:last-child{color:#ff4d5a}
+  .ffe__row--tot{font-size:1.7rem;color:#fff;font-weight:700;padding-top:8px}
+  .ffe__coupon{margin-top:12px;text-align:center}
+  .ffe__coupon summary{cursor:pointer;font-size:1.3rem;letter-spacing:.06em;text-decoration:underline;text-underline-offset:3px;list-style:none;color:#fff}
+  .ffe__coupon summary::-webkit-details-marker{display:none}
+  .ffe__coupon .ffe__field{margin-top:10px}
+  .ffe__coupon input{text-transform:uppercase}
+  .ffe__hint{font-size:1.2rem;color:rgba(255,255,255,.55);margin:6px 0 0}
+  .ffe__btn{display:block;width:100%;margin-top:22px;padding:17px;border:0;border-radius:3px;background:#ff1a2b;color:#fff;font:inherit;font-size:1.6rem;font-weight:700;cursor:pointer;transition:filter .2s}
+  .ffe__btn:hover{filter:brightness(1.1)}
+  .ffe__btn[disabled]{opacity:.7;cursor:wait}
+  .ffe__secure{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px 0 0;font-size:1.2rem;color:rgba(255,255,255,.6)}
+  /* the stock totals + checkout button are replaced by this step (the section stays in the DOM so the theme's cart JS keeps working) */
+  #main-cart-footer{display:none!important}
+</style>
+<script>
+  (function(){
+    var root=document.getElementById('ffe-{{ section.id }}');
+    if(!root)return;
+    var es=root.dataset.lang==='es';
+    var minD=parseInt(root.dataset.min,10)||7,maxD=parseInt(root.dataset.max,10)||13;
+    var form=root.querySelector('form');
+    var email=form.elements.email,zip=form.elements.zip,disc=form.elements.discount;
+    var opt=root.querySelector('[data-opt]'),dates=root.querySelector('[data-dates]');
+    // Mexican official rest days (business days skip these and weekends)
+    var HOL=['2026-11-16','2026-12-25','2027-01-01','2027-02-01','2027-03-15','2027-05-01','2027-09-16','2027-11-15','2027-12-25','2028-01-01'];
+    function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+    function addBiz(n){var d=new Date();d.setHours(12,0,0,0);var c=0;while(c<n){d.setDate(d.getDate()+1);var w=d.getDay();if(w!==0&&w!==6&&HOL.indexOf(key(d))===-1)c++}return d}
+    var days=es?['domingo','lunes','martes','miércoles','jueves','viernes','sábado']:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    function fmt(d){var dd=String(d.getDate()).padStart(2,'0'),mm=String(d.getMonth()+1).padStart(2,'0');return days[d.getDay()]+' '+(es?dd+'/'+mm:mm+'/'+dd)}
+    dates.textContent=(es?'Llega entre ':'Arrives between ')+fmt(addBiz(minD))+(es?' y ':' and ')+fmt(addBiz(maxD));
+    function store(k,v){try{localStorage.setItem('ffe_'+k,v)}catch(e){}}
+    function load(k){try{return localStorage.getItem('ffe_'+k)||''}catch(e){return ''}}
+    email.value=load('email');zip.value=load('zip');
+    function okEmail(){return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())}
+    function okZip(){return /^\d{5}$/.test(zip.value.trim())}
+    function err(name,bad){root.querySelector('[data-err="'+name+'"]').hidden=!bad;form.elements[name].closest('.ffe__field').classList.toggle('is-bad',bad)}
+    function refreshOpt(){opt.hidden=!okZip()}
+    zip.addEventListener('input',function(){zip.value=zip.value.replace(/\D/g,'').slice(0,5);if(okZip())err('zip',false);refreshOpt()});
+    email.addEventListener('input',function(){if(okEmail())err('email',false)});
+    email.addEventListener('blur',function(){if(email.value)err('email',!okEmail())});
+    refreshOpt();
+    window.addEventListener('pageshow',function(){form.querySelector('.ffe__btn').disabled=false});
+    // keep totals in sync when quantities change on this page
+    var money=function(c){return (c/100).toLocaleString('es-MX',{style:'currency',currency:'{{ cart.currency.iso_code }}'})};
+    function sync(){fetch('{{ routes.cart_url }}.js',{headers:{Accept:'application/json'}}).then(function(r){return r.json()}).then(function(c){
+      if(!c.item_count){location.reload();return}
+      root.querySelector('[data-sub]').textContent=money(c.items_subtotal_price);
+      root.querySelector('[data-tot]').textContent=money(c.total_price);
+      var row=root.querySelector('[data-disc-row]');row.hidden=!c.total_discount;root.querySelector('[data-disc]').textContent='-'+money(c.total_discount);
+    }).catch(function(){})}
+    document.addEventListener('DOMContentLoaded',function(){if(typeof subscribe==='function'&&window.PUB_SUB_EVENTS){subscribe(PUB_SUB_EVENTS.cartUpdate,function(){setTimeout(sync,50)})}});
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var bad=false;
+      if(!okEmail()){err('email',true);bad=true}
+      if(!okZip()){err('zip',true);bad=true}
+      if(bad){(okEmail()?zip:email).focus();return}
+      store('email',email.value.trim());store('zip',zip.value.trim());
+      var btn=form.querySelector('.ffe__btn');btn.disabled=true;
+      var q=['checkout[email]='+encodeURIComponent(email.value.trim()),'checkout[shipping_address][zip]='+encodeURIComponent(zip.value.trim()),'checkout[shipping_address][country]=MX'];
+      var code=(disc&&disc.value||'').trim().toUpperCase();
+      if(code)q.push('discount='+encodeURIComponent(code));
+      // checkout opens with the email and postal code already filled in
+      location.href=root.dataset.checkout+'?'+q.join('&');
+    });
+  })();
+</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Entrega (paso 2)",
+  "settings": [
+    {"type": "number", "id": "min_days", "label": "Días hábiles mínimos", "default": 7},
+    {"type": "number", "id": "max_days", "label": "Días hábiles máximos", "default": 13}
+  ],
+  "presets": [{"name": "Entrega (paso 2)"}]
+}
+{% endschema %}
