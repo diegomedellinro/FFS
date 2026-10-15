@@ -1,0 +1,55 @@
+{%- assign ff_es = false -%}{%- if request.locale.iso_code == 'es' -%}{%- assign ff_es = true -%}{%- endif -%}
+{%- assign today = 'now' | date: '%Y-%m-%d' -%}
+{%- if cart != empty and section.settings.end_date != blank and today <= section.settings.end_date -%}
+<div class="ffp page-width" id="ffp-{{ section.id }}" data-lang="{% if ff_es %}es{% else %}en{% endif %}" data-count="{{ cart.item_count }}">
+  <div class="ffp__box">
+    <p class="ffp__msg" data-msg></p>
+    <div class="ffp__track" aria-hidden="true">
+      <div class="ffp__fill" data-fill></div>
+      <span class="ffp__mark" style="left:60%"><b>3</b><i>3x2</i></span>
+      <span class="ffp__mark" style="left:100%"><b>5</b><i>5x3</i></span>
+    </div>
+  </div>
+</div>
+<style>
+  .ffp{padding-top:18px}
+  .ffp__box{max-width:620px;margin:0 auto;border:1px solid rgba(255,26,43,.55);background:rgba(255,26,43,.08);border-radius:6px;padding:14px 18px 30px}
+  .ffp__msg{margin:0 0 14px;font-size:1.45rem;color:#fff;text-align:center;line-height:1.35}
+  .ffp__msg b{color:#ff1a2b}
+  .ffp__msg code{font-family:inherit;font-weight:800;background:#ff1a2b;color:#fff;padding:1px 7px;border-radius:3px;letter-spacing:.04em}
+  .ffp__track{position:relative;height:6px;border-radius:99px;background:rgba(255,255,255,.18);margin:0 12px}
+  .ffp__fill{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:#ff1a2b;transition:width .5s cubic-bezier(.2,.8,.2,1)}
+  .ffp__mark{position:absolute;top:50%;translate:-50% -50%;display:flex;flex-direction:column;align-items:center}
+  .ffp__mark b{width:22px;height:22px;border-radius:50%;background:#000;border:2px solid rgba(255,255,255,.4);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+  .ffp__mark.is-on b{background:#ff1a2b;border-color:#ff1a2b}
+  .ffp__mark i{position:absolute;top:26px;font-style:normal;font-size:1.1rem;color:rgba(255,255,255,.7);white-space:nowrap}
+</style>
+<script>
+  (function(){
+    var root=document.getElementById('ffp-{{ section.id }}');if(!root)return;
+    var es=root.dataset.lang==='es';
+    var msg=root.querySelector('[data-msg]'),fill=root.querySelector('[data-fill]'),marks=root.querySelectorAll('.ffp__mark');
+    function plural(n,a,b){return n===1?a:b}
+    function render(n){
+      var t;
+      if(n<3){var k=3-n;t=es?'Agrega <b>'+k+' '+plural(k,'jersey más','jerseys más')+'</b> y una te sale <b>GRATIS</b> con el 3x2':'Add <b>'+k+' more '+plural(k,'jersey','jerseys')+'</b> and get one <b>FREE</b> with 3x2'}
+      else if(n<5){var k2=5-n;t=(es?'¡Ya tienes el <b>3x2</b>! Agrega <b>'+k2+' más</b> y paga solo 3 de 5 con el código <code>5X3</code>':'You unlocked <b>3x2</b>! Add <b>'+k2+' more</b> and pay for 3 of 5 with code <code>5X3</code>')}
+      else{t=es?'¡Ya calificas para el <b>5x3</b>! Usa el código <code>5X3</code> en el pago':'You qualify for <b>5x3</b>! Use code <code>5X3</code> at payment'}
+      msg.innerHTML=t;
+      fill.style.width=Math.min(100,n/5*100)+'%';
+      marks[0].classList.toggle('is-on',n>=3);marks[1].classList.toggle('is-on',n>=5);
+    }
+    render(parseInt(root.dataset.count,10)||0);
+    document.addEventListener('DOMContentLoaded',function(){if(typeof subscribe==='function'&&window.PUB_SUB_EVENTS){subscribe(PUB_SUB_EVENTS.cartUpdate,function(){fetch('{{ routes.cart_url }}.js').then(function(r){return r.json()}).then(function(c){render(c.item_count)}).catch(function(){})})}});
+  })();
+</script>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Barra 3x2 / 5x3",
+  "settings": [
+    {"type": "text", "id": "end_date", "label": "Mostrar hasta (AAAA-MM-DD)", "default": "2026-10-31", "info": "Se oculta sola después de esta fecha"}
+  ],
+  "presets": [{"name": "Barra 3x2 / 5x3"}]
+}
+{% endschema %}
