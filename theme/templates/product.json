@@ -1,0 +1,82 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {"type": "text", "settings": {"text": "{{ product.vendor }}", "text_style": "uppercase"}},
+        "title": {"type": "title", "settings": {}},
+        "price": {"type": "price", "settings": {}},
+        "variant_picker": {"type": "variant_picker", "settings": {"picker_type": "button", "swatch_shape": "circle"}},
+        "size_link": {"type": "custom_liquid", "settings": {"custom_liquid": "{% render 'ff-sizebtn' %}"}},
+        "name_number": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign ff_handles = product.collections | map: 'handle' %}{% assign ff_es = false %}{% if request.locale.iso_code == 'es' %}{% assign ff_es = true %}{% endif %}{% unless ff_handles contains 'football-boots' %}<div class='ff-np'><fieldset class='ff-np__box'><legend class='ff-np__legend'>{% if ff_es %}Nombre y número{% else %}Name and number{% endif %} <span>({% if ff_es %}opcional{% else %}optional{% endif %})</span></legend><div class='ff-np__row'><label class='ff-np__field'><span>{% if ff_es %}Nombre{% else %}Name{% endif %}</span><input type='text' name='properties[Name]' maxlength='12' placeholder='{% if ff_es %}ej. MESSI{% else %}e.g. MESSI{% endif %}' autocomplete='off' data-ff-np='name'></label><label class='ff-np__field ff-np__field--num'><span>{% if ff_es %}Número{% else %}Number{% endif %}</span><input type='text' name='properties[Number]' maxlength='2' inputmode='numeric' placeholder='10' autocomplete='off' data-ff-np='number'></label></div><p class='ff-np__hint'>{% if ff_es %}Agrega el nombre y número para la espalda de tu jersey. Déjalo vacío si no quieres.{% else %}Add the name and number for the back of your jersey. Leave blank for none.{% endif %}</p></fieldset><style>.ff-np{margin:0 0 1.6rem}.ff-np__box{border:1px solid rgba(255,255,255,.25);padding:1.2rem 1.4rem 1.4rem;margin:0}.ff-np__legend{padding:0 .6rem;font-weight:700;font-size:1.4rem;color:#fff}.ff-np__legend span{font-weight:400;color:#b5b5b5}.ff-np__row{display:flex;gap:1.2rem}.ff-np__field{display:flex;flex-direction:column;flex:1;gap:.4rem;font-size:1.3rem;color:#b5b5b5}.ff-np__field--num{flex:0 0 9rem}.ff-np__field input{background:#0d0d0d;color:#fff;border:1px solid rgba(255,255,255,.3);padding:1rem 1.2rem;font:inherit;font-size:1.5rem;text-transform:uppercase;border-radius:2px}.ff-np__field input:focus{outline:2px solid #ff1a2b;outline-offset:1px}.ff-np__hint{margin:1rem 0 0;font-size:1.2rem;color:#b5b5b5}</style><script>(function(){var box=document.currentScript.parentElement;var inputs=box.querySelectorAll('input[data-ff-np]');function link(){var f=document.querySelector('product-form form')||document.querySelector('form[id^=product-form]');if(!f||!f.id){return}inputs.forEach(function(i){i.setAttribute('form',f.id)})}inputs.forEach(function(i){i.addEventListener('input',function(){if(i.getAttribute('data-ff-np')==='number'){i.value=i.value.replace(/[^0-9]/g,'')}else{i.value=i.value.toUpperCase()}})});link();document.addEventListener('DOMContentLoaded',link);})();</script></div>{% endunless %}"
+          }
+        },
+        "quantity_selector": {"type": "quantity_selector", "settings": {}},
+        "buy_buttons": {"type": "buy_buttons", "settings": {"show_dynamic_checkout": false, "show_gift_card_recipient": true}},
+        "trust_info": {"type": "custom_liquid", "settings": {"custom_liquid": "{% render 'ff-trust' %}"}},
+        "why_buy": {"type": "custom_liquid", "settings": {"custom_liquid": "{% render 'ff-why' %}"}},
+        "description": {"type": "description", "settings": {}},
+        "share": {"type": "share", "settings": {"share_label": "Share"}}
+      },
+      "block_order": ["vendor", "title", "price", "variant_picker", "size_link", "name_number", "quantity_selector", "buy_buttons", "trust_info", "why_buy", "description", "share"],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "trust": {
+      "type": "trust-badges",
+      "blocks": {
+        "b1": {"type": "badge", "settings": {"icon": "shipping", "title": "Free shipping", "text": "On all your orders"}},
+        "b2": {"type": "badge", "settings": {"icon": "payment", "title": "Secure payment", "text": "Trusted payment gateway"}},
+        "b3": {"type": "badge", "settings": {"icon": "guarantee", "title": "30-day guarantee", "text": "Exchange it if it doesn't fit or arrives with a problem"}},
+        "b4": {"type": "badge", "settings": {"icon": "support", "title": "WhatsApp support", "text": "We answer your questions fast"}}
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {"bg": "#0c0c0c", "circle": "#ffffff", "accent": "#b22626", "text_color": "#faf1f1"}
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {"heading": "Disclosures", "heading_size": "h2", "open_by_default": false, "color_scheme": "", "padding_top": 36, "padding_bottom": 0}
+    },
+    "1791607612e9b29cc1": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_dynamic_section_BYE6pV": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-dynamic-section/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {"reviews_to_display": "product_reviews_only", "default_tab": "automatic", "only_photos": false, "aggregated": true, "limit": 8, "hide_thumbnails": false, "maxwidth": 1080, "is_sample": true}
+        }
+      },
+      "block_order": ["loox_reviews_loox_dynamic_section_BYE6pV"],
+      "settings": {"include_margins": true}
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {"heading": "You may also like", "heading_size": "h2", "products_to_show": 4, "columns_desktop": 4, "columns_mobile": "2", "color_scheme": "scheme-1", "image_ratio": "square", "image_shape": "default", "show_secondary_image": true, "show_vendor": false, "show_rating": false, "padding_top": 36, "padding_bottom": 28}
+    }
+  },
+  "order": ["main", "trust", "disclosures", "1791607612e9b29cc1", "related-products"]
+}

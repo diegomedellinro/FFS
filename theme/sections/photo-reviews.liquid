@@ -1,0 +1,103 @@
+{% if section.blocks.size > 0 %}
+{% assign ff_es = false %}{% if request.locale.iso_code == 'es' %}{% assign ff_es = true %}{% endif %}
+<div class="ff-revwrap">
+<section class="ff-revs page-width ff-revs--{{ section.settings.columns }}" style="--ff-photo:{{ section.settings.photo_px }}px">
+  <h2 class="ff-revs__title">{{ section.settings.title }}</h2>
+  <div class="ff-revs__grid">
+    {% for block in section.blocks %}
+      <div class="ff-rev" {{ block.shopify_attributes }}>
+        <div class="ff-rev__t">
+          {% if block.settings.photo != blank %}<button type="button" class="ff-rev__zoom" data-full="{{ block.settings.photo | image_url: width: 1600 }}" data-cap="{{ block.settings.name | escape }}" aria-label="{% if ff_es %}Ampliar foto de{% else %}Enlarge photo from{% endif %} {{ block.settings.name | escape }}"><img src="{{ block.settings.photo | image_url: width: 400 }}" alt="{{ block.settings.name | escape }}" loading="lazy" width="{{ section.settings.photo_px }}" height="{{ section.settings.photo_px }}"><span class="ff-rev__mag" aria-hidden="true">&#128269;</span></button>{% endif %}
+          <p>{{ block.settings.quote }}</p>
+          {% if block.settings.translation != blank and ff_es == false %}<p class="ff-rev__en"><span class="ff-rev__lang">EN</span> {{ block.settings.translation }}</p>{% endif %}
+          <b>{{ block.settings.name }}</b><span>{{ block.settings.product }}</span>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+<div class="ff-lb" hidden role="dialog" aria-modal="true" aria-label="{% if ff_es %}Foto de la reseña{% else %}Review photo{% endif %}">
+  <button type="button" class="ff-lb__x" aria-label="{% if ff_es %}Cerrar{% else %}Close{% endif %}">&times;</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+</div>
+</div>
+<style>
+  .ff-revs__title{text-align:center;font-size:clamp(28px,4vw,44px);margin:56px 0 32px}
+  .ff-revs__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ff-revs--2 .ff-revs__grid{grid-template-columns:repeat(2,1fr)}
+  .ff-revs--4 .ff-revs__grid{grid-template-columns:repeat(4,1fr)}
+  .ff-rev{border:1px solid #2a2a2a;background:#0d0d0d;color:#fff;display:flex;flex-direction:column;min-width:0}
+  .ff-rev__zoom{position:relative;display:block;margin:0 auto 16px;padding:0;border:0;background:none;cursor:zoom-in;width:var(--ff-photo,112px);height:var(--ff-photo,112px)}
+  .ff-rev img{display:block;width:var(--ff-photo,112px);height:var(--ff-photo,112px);object-fit:cover;border-radius:8px;border:1px solid #2a2a2a;transition:transform .25s,border-color .25s}
+  .ff-rev__zoom:hover img{transform:scale(1.06);border-color:#ff1a2b}
+  .ff-rev__mag{position:absolute;right:4px;bottom:4px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.7);font-size:12px;display:grid;place-items:center}
+  .ff-rev__t{padding:18px;display:flex;flex-direction:column;flex:1}
+  .ff-stars{color:#ff1a2b;letter-spacing:3px}
+  .ff-rev__head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+  .ff-rev span.ff-rev__ver{display:inline-flex;align-items:center;gap:5px;color:#4ade80;font-size:12px;font-weight:600;line-height:1}
+  .ff-rev p{margin:10px 0 14px;line-height:1.5}
+  .ff-rev p.ff-rev__en{margin:-4px 0 14px;font-size:13px;line-height:1.45;color:#b5b5b5;font-style:italic;flex:1}
+  .ff-rev__lang{display:inline-block;font-style:normal;font-size:10px;font-weight:700;letter-spacing:.08em;color:#fff;background:#ff1a2b;border-radius:2px;padding:1px 5px;margin-right:4px}
+  .ff-rev b{display:block}.ff-rev span{color:#b5b5b5;font-size:13px}
+  .ff-rev span.ff-rev__lang{color:#fff;font-size:10px}
+  .ff-rev span.ff-rev__mag{color:#fff;font-size:12px}
+  .ff-lb{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:24px;animation:ffLb .25s ease}
+  .ff-lb[hidden]{display:none}
+  .ff-lb figure{margin:0;max-width:min(94vw,900px);text-align:center;animation:ffLbIn .3s cubic-bezier(.2,.8,.2,1)}
+  .ff-lb img{max-width:100%;max-height:82vh;border-radius:10px;border:1px solid #ff1a2b;box-shadow:0 0 50px rgba(255,26,43,.35)}
+  .ff-lb figcaption{color:#ddd;margin-top:10px;font-size:14px}
+  .ff-lb__x{position:absolute;top:14px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid #444;background:#111;color:#fff;font-size:28px;line-height:1;cursor:pointer}
+  .ff-lb__x:hover{background:#ff1a2b}
+  @keyframes ffLb{from{opacity:0}}@keyframes ffLbIn{from{opacity:0;transform:scale(.92)}}
+  @media(max-width:989px){.ff-revs__grid,.ff-revs--2 .ff-revs__grid,.ff-revs--4 .ff-revs__grid{grid-template-columns:1fr 1fr}}
+  /* phones: still 2 per row, just more compact */
+  @media(max-width:560px){
+    .ff-revs__title{margin:36px 0 20px}
+    .ff-revs__grid,.ff-revs--2 .ff-revs__grid,.ff-revs--4 .ff-revs__grid{grid-template-columns:1fr 1fr;gap:10px}
+    .ff-rev__t{padding:10px}
+    .ff-rev__zoom{width:76px;height:76px;margin-bottom:10px}
+    .ff-rev img{width:76px;height:76px}
+    .ff-rev__mag{width:20px;height:20px;font-size:10px}
+    .ff-stars{letter-spacing:1px;font-size:13px}
+    .ff-rev__head{gap:4px 8px}
+    .ff-rev span.ff-rev__ver{font-size:10px;gap:4px}
+    .ff-rev span.ff-rev__ver svg{width:11px;height:11px}
+    .ff-rev p{margin:6px 0 8px;font-size:12.5px;line-height:1.4;overflow-wrap:anywhere}
+    .ff-rev p.ff-rev__en{font-size:11.5px}
+    .ff-rev b{font-size:12.5px}
+    .ff-rev span{font-size:11px}
+  }
+</style>
+<script>
+  (function(){
+    var wrap=document.currentScript.parentNode.querySelector('.ff-revwrap');
+    if(!wrap)return;
+    var lb=wrap.querySelector('.ff-lb'),img=lb.querySelector('img'),cap=lb.querySelector('figcaption'),last=null;
+    function open(b){img.src=b.getAttribute('data-full');cap.textContent=b.getAttribute('data-cap')||'';lb.hidden=false;document.documentElement.style.overflow='hidden';last=b;lb.querySelector('.ff-lb__x').focus()}
+    function close(){lb.hidden=true;img.removeAttribute('src');document.documentElement.style.overflow='';if(last)last.focus()}
+    wrap.querySelectorAll('.ff-rev__zoom').forEach(function(b){b.addEventListener('click',function(){open(b)})});
+    lb.addEventListener('click',function(e){if(e.target===lb||e.target.classList.contains('ff-lb__x'))close()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close()});
+  })();
+</script>
+{% endif %}
+{% schema %}
+{
+  "name": "Photo reviews",
+  "settings": [
+    {"type": "text", "id": "title", "label": "Title", "default": "Real fans, real kits"},
+    {"type": "select", "id": "columns", "label": "Reviews per row (desktop)", "default": "3", "options": [{"value": "2", "label": "2"}, {"value": "3", "label": "3"}, {"value": "4", "label": "4"}]},
+    {"type": "range", "id": "photo_px", "label": "Photo size", "min": 40, "max": 240, "step": 4, "unit": "px", "default": 112}
+  ],
+  "blocks": [
+    {"type": "review", "name": "Review", "settings": [
+      {"type": "image_picker", "id": "photo", "label": "Customer photo (optional)"},
+      {"type": "textarea", "id": "quote", "label": "Review text"},
+      {"type": "textarea", "id": "translation", "label": "English translation (optional)"},
+      {"type": "text", "id": "name", "label": "Customer name and city"},
+      {"type": "text", "id": "product", "label": "Product (optional)"}
+    ]}
+  ],
+  "presets": [{"name": "Photo reviews"}]
+}
+{% endschema %}

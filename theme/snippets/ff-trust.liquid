@@ -1,0 +1,34 @@
+{%- assign ff_es = false -%}{%- if request.locale.iso_code == 'es' -%}{%- assign ff_es = true -%}{%- endif -%}
+<div class="ff-tl">
+  {%- if shop.enabled_payment_types.size > 0 -%}
+  <div class="ff-tl__pay" role="list" aria-label="{% if ff_es %}Métodos de pago aceptados{% else %}Accepted payment methods{% endif %}">
+    {%- for type in shop.enabled_payment_types -%}
+      <span class="ff-tl__pi" role="listitem">{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</span>
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+  <p class="ff-tl__write"><a href="#judgeme_product_reviews" data-ff-write-review>&#9733; {% if ff_es %}¿Ya la compraste? Deja tu reseña{% else %}Already bought it? Leave a review{% endif %}</a></p>
+  <ul class="ff-tl__list">
+    <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 3 7v10l9 4.5 9-4.5V7z"/><path d="M3 7l9 4.5L21 7M12 11.5v10"/></svg><span>{% if ff_es %}Envío gratis a México y +30 países{% else %}Free shipping to Mexico and 30+ countries{% endif %}</span></li>
+    <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.8-3.4 8-8 9-4.6-1-8-4.2-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span>{% if ff_es %}Pago 100% seguro{% else %}Payment 100% safe{% endif %}</span></li>
+    <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span>{% if ff_es %}Entrega en México: 7 a 13 días hábiles{% else %}Delivery in Mexico: 7 to 13 business days{% endif %}</span></li>
+    <li><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5.3L4 15"/><path d="M4 20v-5h5"/></svg><span>{% if ff_es %}Garantía de 30 días{% else %}30-day guarantee{% endif %} &middot; <a href="{{ routes.root_url | append: '/pages/returns-guarantee' | replace: '//', '/' }}" style="color:#ff1a2b;text-decoration:underline">{% if ff_es %}Detalles{% else %}Details{% endif %}</a></span></li>
+  </ul>
+</div>
+<style>
+  .ff-tl{margin:2rem 0 0;color:#ff1a2b}
+  .ff-tl__pay{display:flex;align-items:center;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
+  /* real payment logos in their original colors */
+  .ff-tl__pi{display:inline-flex;line-height:0}
+  .ff-tl__pi svg{width:48px;height:31px;display:block}
+  .ff-tl__rating{display:flex;align-items:center;justify-content:center;gap:1.2rem;border:1px solid #ff1a2b;background:rgba(255,26,43,.1);border-radius:999px;padding:1rem 2rem;margin-bottom:.8rem;flex-wrap:wrap}
+  .ff-tl__write{text-align:center;margin:0 0 1.8rem;font-size:1.4rem}
+  .ff-tl__write a{color:#fff;font-weight:700;text-decoration:underline;text-decoration-color:#ff1a2b;text-underline-offset:.3rem}
+  .ff-tl__write a:hover{color:#ff1a2b}
+  .ff-tl__stars{font-size:2rem;letter-spacing:.25rem;line-height:1;color:#ff1a2b}
+  .ff-tl__rtext{font-size:1.5rem;color:#fff}
+  .ff-tl__rtext i{font-style:normal;color:#ff1a2b;margin:0 .3rem}
+  .ff-tl__list{list-style:none;margin:0;padding:0;display:grid;gap:1.1rem}
+  .ff-tl__list li{display:flex;align-items:center;gap:1.2rem;font-size:1.5rem;font-weight:600;color:#fff}
+  .ff-tl__list svg{flex:0 0 auto;color:#ff1a2b}
+</style>
