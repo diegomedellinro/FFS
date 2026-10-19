@@ -1,0 +1,133 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "about-hero",
+      "settings": {
+        "eyebrow": "Our story",
+        "heading": "A growing team built by football fans, for football fans",
+        "text": "Football Frenzy Shop started with a simple idea: everyone should be able to wear the shirt of the team they love. Today we are a growing team that has delivered more than 3,000 orders to fans across Mexico and beyond, most of them through our Instagram @footballfrenzy.shop before we opened this online store.",
+        "button_label": "Shop jerseys",
+        "button_link": ""
+      }
+    },
+    "stats": {
+      "type": "about-stats",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "number": 3000,
+            "suffix": "+",
+            "label": "Orders delivered (Instagram + online store)"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "number": 1300,
+            "suffix": "+",
+            "label": "Happy reviews"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "number": 100,
+            "suffix": "+",
+            "label": "Teams available"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {}
+    },
+    "story": {
+      "type": "about-story",
+      "settings": {
+        "heading": "Where we come from",
+        "text": "<p>Football Frenzy Shop was born from our own passion for the game. We were tired of low-quality shirts and slow, unreliable shipping, so we set out to build the store we always wanted to buy from.</p><p>What began as a small project has grown into a dedicated team handling thousands of orders, from classic retro kits to the newest season releases.</p><p>Every jersey we offer is picked with fans in mind: great quality, honest prices and real customer support.</p>"
+      }
+    },
+    "video": {
+      "type": "about-video",
+      "disabled": true,
+      "settings": {
+        "heading": "See us in action",
+        "text": "Meet the team and see how we pack your favorite jerseys with care.",
+        "video_url": ""
+      }
+    },
+    "values": {
+      "type": "about-values",
+      "blocks": {
+        "v1": {
+          "type": "value",
+          "settings": {
+            "title": "Quality first",
+            "text": "Every jersey is carefully selected so it looks and feels great, from retro classics to the latest season kits."
+          }
+        },
+        "v2": {
+          "type": "value",
+          "settings": {
+            "title": "Made for fans",
+            "text": "We are fans too. We choose the teams, designs and details we would want to wear ourselves."
+          }
+        },
+        "v3": {
+          "type": "value",
+          "settings": {
+            "title": "Real support",
+            "text": "A real team answers your questions before and after your order, so you never feel alone."
+          }
+        },
+        "v4": {
+          "type": "value",
+          "settings": {
+            "title": "Growing together",
+            "text": "With 3,000+ orders delivered, our community is what drives us to keep improving."
+          }
+        }
+      },
+      "block_order": [
+        "v1",
+        "v2",
+        "v3",
+        "v4"
+      ],
+      "settings": {
+        "heading": "What we stand for"
+      }
+    },
+    "cta": {
+      "type": "about-banner",
+      "settings": {
+        "text": "Join us on this journey with the best quality retro and current jerseys of your favorite teams.",
+        "highlight": "Join the 3,000+ fans who already trust us ⚽",
+        "button_label": "Shop now",
+        "button_link": ""
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "stats",
+    "story",
+    "video",
+    "values",
+    "cta"
+  ]
+}
