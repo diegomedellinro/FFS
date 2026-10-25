@@ -1,4 +1,4 @@
-"""Posts de la semana del Clásico (Barça vs Real Madrid, dom 25 oct 2026, 13:00 h CDMX) con la estética de marca.
+"""Posts de la semana del Clásico (Barça vs Real Madrid, dom 25 oct 2026, 2:00 PM CDMX) con la estética de marca.
 
 P1 duelo  — carrusel "Duelo de jerseys": 5 rondas Madrid vs Barça, se vota comentando 1 o 2.
 P2 retro  — carrusel "Las retro del Clásico": jerseys retro + el momento que las hizo icónicas.
@@ -156,7 +156,7 @@ def p3():
     put(c, neon(text("VS", "Anton.ttf", 96, WHITE)), W / 2, 700)
     put(c, shop_box("ME REGALAS LA JERSEY", 42), W / 2, 1000)
     put(c, script("Etiqueta a tu rival", 120, 3), W / 2, 1125)
-    put(c, caps("DOMINGO 25 · 13:00 H", 24, SOFT, 0.3), W / 2, 1225)
+    put(c, caps("DOMINGO 25 · 2:00 PM", 24, SOFT, 0.3), W / 2, 1225)
     sign(c, w=110, y=H - 55)
     return c
 
