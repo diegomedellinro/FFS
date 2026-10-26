@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw
 import generar_ads as g
 from generar_ads import text, rich, put, WHITE, INK
 import abre_la_foto as b
-from abre_la_foto import NEON, brush, crown, shop_box, caps, neon, jersey_glow, sign, SCRIPT
+from abre_la_foto import NEON, brush, crown, shop_box, caps, neon, jersey_glow, sign
 
 W, H = 1080, 1350
 OUT = g.HERE + "out/balon_de_oro/"
@@ -18,9 +18,29 @@ GOLDN = (255, 190, 60)
 SOFT = (200, 200, 206)
 
 
-def gold_script(s, px, rot=6):
-    lay = text(s, SCRIPT, px, (250, 246, 236)).rotate(rot, Image.BICUBIC, expand=True)
-    return neon(lay, color=GOLDN, r=(10, 28), k=(1.3, 0.8))
+def gold_script(s, px, rot=0):
+    """Formal gold title: Cinzel Bold caps with a warm glow (replaces the brush script)."""
+    from PIL import ImageFont
+    f = ImageFont.truetype(g.HERE + "fonts/Cinzel.ttf", int(px))
+    f.set_variation_by_axes([800])
+    s = s.upper()
+    bb = f.getbbox(s)
+    pad = int(px * 0.15)
+    tw = int(f.getlength(s) + 0.06 * px * (len(s) - 1))
+    lay = Image.new("RGBA", (tw + 2 * pad, bb[3] - bb[1] + 2 * pad), (0, 0, 0, 0))
+    d = ImageDraw.Draw(lay)
+    x = pad
+    for ch in s:
+        d.text((x, pad - bb[1]), ch, font=f, fill=(255, 240, 205))
+        x += f.getlength(ch) + 0.06 * px
+    # vertical gold gradient on the letters
+    grad = Image.new("RGBA", lay.size)
+    gd = ImageDraw.Draw(grad)
+    for y in range(lay.height):
+        k = y / max(1, lay.height - 1)
+        gd.line([(0, y), (lay.width, y)], fill=(int(255 - 20 * k), int(236 - 70 * k), int(190 - 120 * k), 255))
+    grad.putalpha(lay.getchannel("A"))
+    return neon(grad, color=GOLDN, r=(8, 24), k=(0.8, 0.5), drop=(0, 0))
 
 
 def base(W=W, H=H, k=0.3):
@@ -28,23 +48,28 @@ def base(W=W, H=H, k=0.3):
 
 
 def ball(d):
-    """Simple golden ball icon (drawn, no trademarked trophy)."""
-    im = Image.new("RGBA", (d, d), (0, 0, 0, 0))
-    dr = ImageDraw.Draw(im)
-    dr.ellipse([4, 4, d - 4, d - 4], fill=(236, 186, 70, 255), outline=(255, 226, 140, 255), width=max(3, d // 40))
-    # pentagon + seams
-    import math
-    cx = cy = d / 2
-    r = d * 0.17
-    pts = [(cx + r * math.cos(math.radians(-90 + 72 * i)), cy + r * math.sin(math.radians(-90 + 72 * i))) for i in range(5)]
-    dr.polygon(pts, fill=(170, 120, 30, 255))
-    for x, y in pts:
-        ex, ey = cx + (x - cx) * 2.5, cy + (y - cy) * 2.5
-        dr.line([(x, y), (ex, ey)], fill=(170, 120, 30, 255), width=max(3, d // 45))
-    hl = Image.new("RGBA", (d, d), (0, 0, 0, 0))
-    ImageDraw.Draw(hl).ellipse([d * 0.2, d * 0.12, d * 0.5, d * 0.36], fill=(255, 255, 255, 90))
-    im.alpha_composite(hl)
-    return neon(im, color=GOLDN, r=(12, 34), k=(0.9, 0.6), drop=(0, 0))
+    """The real Ballon d'Or trophy photo (cut out) with a warm halo; d = target height."""
+    im = Image.open(g.SRC + "trofeo_bdo.png").convert("RGBA")
+    im = im.resize((round(im.width * d / im.height), d), Image.LANCZOS)
+    p = int(d * 0.25)
+    out = Image.new("RGBA", (im.width + 2 * p, im.height + 2 * p), (0, 0, 0, 0))
+    a = Image.new("L", out.size, 0)
+    a.paste(im.getchannel("A"), (p, p))
+    from PIL import ImageFilter
+    halo = a.filter(ImageFilter.GaussianBlur(d * 0.09)).point(lambda v: int(v * 0.75))
+    out.alpha_composite(Image.composite(Image.new("RGBA", out.size, (255, 150, 50, 255)), Image.new("RGBA", out.size, (0, 0, 0, 0)), halo))
+    out.alpha_composite(im, (p, p))
+    return out
+
+
+def rule(w):
+    """Thin gold rule with a small diamond in the middle (formal divider)."""
+    im = Image.new("RGBA", (w, 30), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.line([(0, 15), (w / 2 - 22, 15)], fill=GOLDN + (255,), width=3)
+    d.line([(w / 2 + 22, 15), (w, 15)], fill=GOLDN + (255,), width=3)
+    d.polygon([(w / 2, 4), (w / 2 + 11, 15), (w / 2, 26), (w / 2 - 11, 15)], fill=GOLDN + (255,))
+    return neon(im, color=GOLDN, r=(4, 12), k=(0.6, 0.4), drop=(0, 0))
 
 
 def big(s, px=260):
@@ -59,9 +84,9 @@ def lines(c, rows, y, px=40, gap=56, color=WHITE):
 def cover():
     c = base()
     put(c, caps("HOY · 2:00 PM · LONDRES", 30, GOLDN, 0.35), W / 2, 100)
-    put(c, gold_script("Balón de Oro", 190), W / 2, 270)
-    put(c, brush(720, 20, 201), W / 2, 420, 1, 1, 3)
-    put(c, ball(330), W / 2, 670)
+    put(c, gold_script("Balón de Oro", 100), W / 2, 225)
+    put(c, rule(620), W / 2, 320)
+    put(c, ball(560), W / 2, 640)
     put(c, shop_box("5 DATOS QUE NO SABÍAS", 40), W / 2, 960)
     put(c, caps("DESLIZA  >>", 26, SOFT, 0.3), W / 2, 1060)
     sign(c, w=150, y=H - 80)
@@ -72,7 +97,7 @@ def dato(n, num, title_rows, sub_rows, jersey, jw=520, jh=470):
     c = base(k=0.28)
     put(c, caps(f"DATO {n} DE 5", 28, GOLDN, 0.35), W / 2, 90)
     put(c, big(num, 250 if len(num) <= 4 else 200), W / 2, 270)
-    put(c, brush(560, 16, 210 + n, GOLDN), W / 2, 420, 1, 1, 3)
+    put(c, rule(480), W / 2, 420)
     lines(c, title_rows, 500, 46, 62)
     lines(c, sub_rows, 520 + 62 * len(title_rows), 34, 48, SOFT)
     if jersey:
@@ -91,14 +116,14 @@ DATOS = [
 
 
 def dato5_extra(c):
-    put(c, ball(380), W / 2, 975)
+    put(c, ball(470), W / 2, 975)
 
 
 def vota():
     c = base(k=0.34)
-    put(c, gold_script("¿Quién se lo lleva?", 140, 5), W / 2, 170)
+    put(c, gold_script("¿Quién se lo lleva?", 70), W / 2, 180)
     put(c, text("Comenta tu número antes de las 2:00 PM", "Inter-Bold.otf", 40, WHITE), W / 2, 330)
-    opts = (("1", "KANE", "bayern.png"), ("2", "YAMAL", "cl_fcb_home26.png"), ("3", "MBAPPÉ", "rm125.png"))
+    opts = (("1", "KANE", "bayern.png"), ("2", "YAMAL", "cl_fcb_home26.png"), ("3", "MBAPPÉ", "cl_rm_away26.png"))
     for i, (num, name, j) in enumerate(opts):
         x = W * (0.2 + 0.3 * i)
         jersey_glow(c, j, x, 620, 290, 320, (-6, 0, 6)[i])
@@ -112,9 +137,9 @@ def vota():
 
 def cierre():
     c = base(k=0.38)
-    put(c, gold_script("Lleva la jersey", 160, 5), W / 2, 190)
-    put(c, gold_script("de tu ganador", 160, 5), W / 2, 350)
-    for j, dx, rot in (("bayern.png", -0.3, -9), ("cl_fcb_home26.png", 0, 0), ("rm125.png", 0.3, 9)):
+    put(c, gold_script("Lleva la jersey", 84), W / 2, 190)
+    put(c, gold_script("de tu ganador", 84), W / 2, 320)
+    for j, dx, rot in (("bayern.png", -0.3, -9), ("cl_fcb_home26.png", 0, 0), ("cl_rm_away26.png", 0.3, 9)):
         jersey_glow(c, j, W / 2 + dx * W, 650, 330, 350, rot)
     put(c, rich((("LLEVA 3, ", WHITE), ("PAGA 2", NEON)), "Anton.ttf", 90), W / 2, 890)
     put(c, b.option(b.plane(72), "PÍDELA POR DM", "Te ayudamos con talla y dorsal"), W / 2, 1030)
@@ -128,8 +153,8 @@ def historia():
     c = base(SW, SH, 0.34)
     put(c, b.logo(150), SW / 2, 300)
     put(c, caps("HOY · 2:00 PM", 32, GOLDN, 0.4), SW / 2, 420)
-    put(c, gold_script("Balón de Oro", 210), SW / 2, 570)
-    put(c, ball(260), SW / 2, 830)
+    put(c, gold_script("Balón de Oro", 100), SW / 2, 540)
+    put(c, ball(380), SW / 2, 800)
     put(c, shop_box("¿QUIÉN SE LO LLEVA?", 40), SW / 2, 1030)
     # slot for the Instagram poll / quiz sticker
     w, h = 820, 300
