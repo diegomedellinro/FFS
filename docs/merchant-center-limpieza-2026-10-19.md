@@ -20,3 +20,10 @@
 ## Pendiente
 - Confirmar "1,300+ Happy reviews" en Quiénes somos (Loox tiene 38).
 - Publicar el tema, esperar 2-3 días y pedir revisión en Merchant Center.
+
+## 2026-10-27 — Segunda revisión (Misrepresentation sigue)
+- Se quitaron los precios tachados (compare-at) de 158 productos / 2,024 variantes. Precio de venta sin cambios ($800 jerseys, $1,800 tacos).
+  Respaldo para revertir: `docs/respaldo-precios-tachados-2026-10-27.json`.
+- Hypervenom Phantom RGN SE: "caja y bolsa originales" → "incluye caja y bolsa".
+- Search Console "Bloqueada por robots.txt": robots.txt estándar de Shopify (carrito, checkout, búsqueda, filtros, /policies/). No requiere cambios.
+- Envíos: zonas configuradas MX + ~33 países con envío gratis, coincide con el texto "México y +30 países".
