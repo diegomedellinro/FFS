@@ -27,7 +27,7 @@ Asuntos alternativos para probar (A/B):
 ### Cómo instalarlo
 
 **Opción A, la más fácil. Recomendada.**
-1. Ve a Marketing > Automatizaciones > Crear automatización > plantilla "Recuperar pago abandonado" (Shopify Email).
+1. Ve a Crecimiento > Automatizaciones (antes "Marketing"; también aparece en la app Messaging, antes "Shopify Email") > Crear automatización > plantilla "Recuperar pago abandonado".
 2. Deja la primera espera en 1 h. Agrega "Esperar 1 día" + correo 2, y "Esperar 2 días" + correo 3.
    - La plantilla deja de enviar sola si el cliente compra.
 3. En cada correo del editor de Shopify Email:
