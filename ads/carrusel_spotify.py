@@ -17,8 +17,8 @@ cr.PHOTO = g.HERE + "out/hf_ads/raw/barca-outpaint-4k.png"  # foto del cliente a
 
 JERSEYS = [
     ("spotify/golf.png", "TYLER, THE CREATOR", "GOLF", "El logo de Golf Wang en el pecho"),
-    ("spotify/sheeran.png", "ED SHEERAN", "PLAY", "Su álbum de 2025 en la camiseta"),
-    ("spotify/travis_fan.png", "TRAVIS SCOTT", "CACTUS JACK", "Edición local"),
+    ("spotify/sheeran_v2.png", "ED SHEERAN", "PLAY", "Su álbum de 2025 en la camiseta"),
+    ("spotify/travis_fan_v2.png", "TRAVIS SCOTT", "CACTUS JACK", "Edición local"),
     ("spotify/travis_2425.png", "TRAVIS SCOTT", "CACTUS JACK", "Edición visitante en negro"),
     ("spotify/travis_skel.png", "TRAVIS SCOTT  ·  RETRO 2000/01", "SKELETON", "La local 2000/01, reinterpretada"),
 ]
