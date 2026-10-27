@@ -1,4 +1,4 @@
-"""Ad 'FC Barcelona x Golf' estilo editorial (inspo: Real Zaragoza 'Detalles · Home Kit').
+"""Ads estilo editorial (FC Barcelona x Golf y Jerseys Retro) (inspo: Real Zaragoza 'Detalles · Home Kit').
 
 Foto: out/hf_ads/raw/barca-outpaint.png (foto del cliente ampliada hacia arriba con Higgsfield outpaint).
 Salidas: out/hf_ads/barca-golf-historia.jpg (1080x1920) y barca-golf-feed.jpg (1080x1350).
@@ -47,28 +47,31 @@ def lockup(h):
     return im
 
 
-def base(W, H, top_crop):
-    im = Image.open(SRC).convert("RGB")
+def base(W, H, top_crop, src=SRC):
+    im = Image.open(src).convert("RGB")
     s = W / im.width
     im = im.resize((W, round(im.height * s)), Image.LANCZOS)
     y0 = int(top_crop * im.height)
     return im.crop((0, y0, W, y0 + H)).convert("RGBA")
 
 
-def compose(W, H, top_y, cta_y, top_crop=0.0):
-    c = base(W, H, top_crop)
+def compose(W, H, top_y, cta_y, top_crop=0.0, src=SRC, kicker="3X2 ACTIVO", title="FC BARCELONA", sub="x Golf", title_px=118, logo=90):
+    c = base(W, H, top_crop, src)
     gradient(c, top=True, h=0.36, k=0.62)
     gradient(c, top=False, h=0.34, k=0.88)
-    put(c, caps("3X2 ACTIVO", 30, 0.45), W / 2, top_y)
-    put(c, serif("FC BARCELONA", 118, track=0.01), W / 2, top_y + 105)
-    put(c, serif("x Golf", 74, ITAL), W / 2, top_y + 210)
+    put(c, caps(kicker, 30, 0.45), W / 2, top_y)
+    put(c, serif(title, title_px, track=0.01), W / 2, top_y + 105)
+    put(c, serif(sub, 74, ITAL), W / 2, top_y + 210)
     put(c, serif("Haz tu pedido por mensaje directo", 44, ITAL), W / 2, cta_y)
     put(c, serif("o en el sitio web", 44, ITAL), W / 2, cta_y + 58)
-    put(c, lockup(90), W / 2, cta_y + 150)
+    put(c, lockup(logo), W / 2, cta_y + 150 + (logo - 90) / 2)
     return c
 
 
 if __name__ == "__main__":
     compose(1080, 1920, 230, 1580).convert("RGB").save(OUT + "barca-golf-historia.jpg", quality=94, subsampling=0)
     compose(1080, 1350, 80, 1110, top_crop=0.04).convert("RGB").save(OUT + "barca-golf-feed.jpg", quality=94, subsampling=0)
+    retro = dict(src=g.HERE + "out/hf_ads/raw/retro-outpaint.png", title="JERSEYS", sub="Retro", title_px=150, logo=120)
+    compose(1080, 1920, 205, 1590, **retro).convert("RGB").save(OUT + "retro-historia.jpg", quality=94, subsampling=0)
+    compose(1080, 1350, 70, 1090, top_crop=0.02, **retro).convert("RGB").save(OUT + "retro-feed.jpg", quality=94, subsampling=0)
     print("ok")
