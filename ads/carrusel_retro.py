@@ -10,20 +10,20 @@ from PIL import Image, ImageDraw, ImageFilter
 import generar_ads as g
 from generar_ads import put
 from hf_ads import gradient
-from barca_golf import serif, caps, lockup, base, compose, ITAL
+from barca_golf import serif, caps, lockup, base, ITAL
 
 OUT = g.HERE + "out/carrusel_retro/"
-PHOTO = g.HERE + "out/hf_ads/raw/retro-outpaint.png"
+PHOTO = g.HERE + "out/hf_ads/raw/retro-rm-4k.png"  # foto original del cliente, upscale 4K (sin outpaint)
 W, H = 1080, 1350
-ERODE = {"cl_fcb_1415.png"}
+ERODE = set()
 SOFT = (215, 215, 220)
 GOLD = (214, 182, 118)
 
 JERSEYS = [
-    ("cl_rm_1112.png", "TEMPORADA 11/12", "REAL MADRID", "La de los 100 puntos"),
+    ("rm_1112_home.png", "TEMPORADA 11/12", "REAL MADRID", "La de los 100 puntos"),
     ("cl_rm_1718ls.png", "TEMPORADA 17/18", "REAL MADRID", "Kiev y la tercera Champions seguida"),
-    ("cl_fcb_0809.png", "TEMPORADA 08/09", "FC BARCELONA", "El primer triplete"),
-    ("cl_fcb_1415.png", "TEMPORADA 14/15", "FC BARCELONA", "Messi, Suárez y Neymar"),
+    ("fcb_0809_home.png", "TEMPORADA 08/09", "FC BARCELONA", "El primer triplete"),
+    ("fcb_1415_home.png", "TEMPORADA 14/15", "FC BARCELONA", "Messi, Suárez y Neymar"),
     ("zidane98.png", "MUNDIAL 1998", "FRANCIA", "Zidane y la primera estrella"),
 ]
 
@@ -79,10 +79,11 @@ def rule(w):
 
 
 def cover():
-    c = compose(W, H, 70, 1090, top_crop=0.02, src=PHOTO, title="JERSEYS", sub="Retro", title_px=150, logo=120)
-    # replace the bottom CTA with a swipe hint: redraw the lower band
-    low = base(W, H, 0.02, PHOTO).crop((0, 1020, W, H))
-    c.alpha_composite(low, (0, 1020))
+    c = base(W, H, 0.0, PHOTO)
+    gradient(c, top=True, h=0.28, k=0.55)
+    put(c, caps("3X2 ACTIVO", 26, 0.45), W / 2, 50)
+    put(c, serif("JERSEYS", 128, track=0.01), W / 2, 140)
+    put(c, serif("Retro", 62, ITAL), W / 2, 232)
     fade(c, 1020, 1130, 0.82)
     put(c, serif("Cinco camisetas que hicieron historia", 42, ITAL), W / 2, 1170)
     put(c, caps("DESLIZA  >>", 24, 0.4), W / 2, 1250)
@@ -124,7 +125,7 @@ def text_small(s):
 
 
 def cierre():
-    c = base(W, H, 0.12, PHOTO)
+    c = base(W, H, 0.10, PHOTO)
     gradient(c, top=True, h=0.20, k=0.45)
     fade(c, 830, 960, 0.86)
     put(c, caps("3X2 ACTIVO", 28, 0.45, GOLD), W / 2, 960)
