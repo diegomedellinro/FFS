@@ -5,7 +5,7 @@ from PIL import Image, ImageFilter
 from scipy import ndimage
 
 
-def cut(src, dst, tol=95):
+def cut(src, dst, tol=95, corners_only=False):
     im = Image.open(src).convert("RGB")
     a = np.asarray(im).astype(np.float32)
     h, w, _ = a.shape
@@ -13,7 +13,10 @@ def cut(src, dst, tol=95):
     bg = np.median(border, axis=0)
     d = np.sqrt(((a - bg) ** 2).sum(axis=2))
     lab, _ = ndimage.label(d < tol)
-    edge = set(np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))) - {0}
+    if corners_only:
+        edge = {lab[2, 2], lab[2, -3], lab[-3, 2], lab[-3, -3]} - {0}
+    else:
+        edge = set(np.unique(np.concatenate([lab[0], lab[-1], lab[:, 0], lab[:, -1]]))) - {0}
     back = np.isin(lab, list(edge))
     fg = ~back
     lab2, n = ndimage.label(fg)
@@ -34,4 +37,4 @@ def cut(src, dst, tol=95):
 
 
 if __name__ == "__main__":
-    cut(sys.argv[1], sys.argv[2])
+    cut(sys.argv[1], sys.argv[2], corners_only="--corners" in sys.argv)

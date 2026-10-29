@@ -1,5 +1,6 @@
 """Carrusel 'Cómo combinar tu jersey' (1080x1350), formato outfit-grid: fondo gris concreto, "HOME KIT" + nombre del club,
-dos outfits (él / ella) generados con Higgsfield usando de referencia la jersey real de la tienda.
+dos outfits (él / ella). Madrid y Barça generados con Higgsfield; América, Inter Miami y PSG hechos con swap_jersey.py
+(misma ropa, jersey real de la tienda pegada encima), sin costo.
 
 Portada → un slide por club (out/outfits/raw/<club>.png) → cierre con CTA.
 Uso: python3 carrusel_outfits.py
@@ -20,6 +21,9 @@ WHITE, INK, RED = (255, 255, 255), (20, 20, 22), (225, 30, 45)
 CLUBS = [
     ("real-madrid", "HOME KIT", ["REAL MADRID"]),
     ("barca-golf", "EDICIÓN GOLF", ["FC BARCELONA"]),
+    ("america", "HOME KIT", ["CLUB AMÉRICA"]),
+    ("inter-miami", "HOME KIT", ["INTER MIAMI"]),
+    ("psg", "HOME KIT", ["PARIS", "SAINT-GERMAIN"]),
 ]
 
 
@@ -53,7 +57,7 @@ def concrete():
 def title(c, kicker, lines, y=130):
     put(c, shadow(sans(kicker, 40, track=0.04)), W / 2, y)
     for i, s in enumerate(lines):
-        put(c, shadow(sans(s, 118 if len(s) < 13 else 100, track=0.01)), W / 2, y + 115 + i * 120)
+        put(c, shadow(sans(s, 118 if len(s) < 12 else 100, track=0.01)), W / 2, y + 115 + i * 120)
 
 
 def mark(c):
