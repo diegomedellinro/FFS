@@ -41,7 +41,7 @@ def folded(name, cy, fh):
     im = Image.open(SRC + name).convert("RGBA")
     im = im.crop(im.getchannel("A").getbbox())
     t0, t1 = torso(im)
-    half = (t1 - t0) * 0.62             # torso plus a bit of the folded sleeves
+    half = (t1 - t0) * 0.56             # torso; sleeves are folded behind
     cx = (t0 + t1) / 2
     x0, x1 = int(max(0, cx - half)), int(min(im.width, cx + half))
     bh = (x1 - x0) * fh / FW
@@ -56,17 +56,42 @@ def folded(name, cy, fh):
     s = max(FW / band.width, fh / band.height)
     body = Image.fromarray(rgb.clip(0, 255).astype(np.uint8)).resize((round(band.width * s), round(band.height * s)), Image.LANCZOS)
     body = body.crop(((body.width - FW) // 2, 0, (body.width - FW) // 2 + FW, fh))
-    # fold shading: darker rolled edges left/right and bottom, soft highlight on top
-    arr = np.asarray(body, np.float32)
-    xs = np.linspace(-1, 1, FW)[None, :, None]
-    ys = np.linspace(0, 1, fh)[:, None, None]
-    shade = 1 - 0.28 * np.clip((np.abs(xs) - 0.82) / 0.18, 0, 1) ** 1.5 - 0.22 * np.clip((ys - 0.82) / 0.18, 0, 1) ** 1.5
-    shade = shade + 0.06 * np.clip((0.12 - ys) / 0.12, 0, 1)
-    body = Image.fromarray((arr * shade).clip(0, 255).astype(np.uint8)).convert("RGBA")
-    m = Image.new("L", (FW, fh), 0)
-    ImageDraw.Draw(m).rounded_rectangle([0, 0, FW - 1, fh - 1], radius=46, fill=255)
-    body.putalpha(m)
-    return body
+    return cloth(np.asarray(body, np.float32), mean, fh)
+
+
+def cloth(arr, base_color, fh, lip=16):
+    """Turn a flat chest band into a folded shirt: pillow volume, sleeve fold creases, wrinkles and a folded hem lip."""
+    rng = np.random.default_rng(int(arr.sum()) % 2**31)
+    x = np.linspace(-1, 1, FW)[None, :]
+    y = np.linspace(-1, 1, fh)[:, None]
+    # volume: light from top-left, edges curl away
+    shade = 1.0 - 0.30 * np.abs(x) ** 6 - 0.20 * np.clip(y, 0, 1) ** 4 + 0.07 * np.exp(-((x + 0.25) ** 2 / 0.35 + (y + 0.4) ** 2 / 0.5))
+    # sleeve folds: vertical crease (dark line with a highlight just inside) near each side
+    for side in (-1, 1):
+        cx = side * 0.80
+        shade = shade - 0.16 * np.exp(-((x - cx) / 0.018) ** 2) + 0.07 * np.exp(-((x - cx + side * 0.05) / 0.035) ** 2)
+    # soft wrinkles: low-frequency noise, stronger along the horizontal (folded) direction
+    n = rng.normal(0, 1, (6, 14))
+    n = np.asarray(Image.fromarray(((n - n.min()) / (n.max() - n.min()) * 255).astype(np.uint8)).resize((FW, fh), Image.BICUBIC), np.float32) / 255 - 0.5
+    shade = shade + 0.07 * n
+    # rolled side edges (cylinder): highlight then fall-off to the very edge
+    t = np.clip((np.abs(x) - 0.86) / 0.14, 0, 1)
+    shade = shade * (1 - 0.5 * t ** 2) + 0.10 * np.exp(-((t - 0.25) / 0.15) ** 2) * (t > 0)
+    rgb = (arr * shade[..., None]).clip(0, 255).astype(np.uint8)
+    # silhouette: superellipse (slight bulge, soft corners) instead of a hard box
+    xx, yy = np.meshgrid(np.linspace(-1, 1, FW), np.linspace(-1, 1, fh))
+    ey = np.where(yy < 0, 4.0, 8.0)                     # rounder shoulders on top, flatter fold at the bottom
+    inside = (np.abs(xx) ** 7 + np.abs(yy) ** ey) <= 1.0
+    body = Image.fromarray(rgb).convert("RGBA")
+    body.putalpha(Image.fromarray((inside * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.2)))
+    # folded hem underneath: same shape, darker, peeking below = fabric thickness
+    out = Image.new("RGBA", (FW, fh + lip), (0, 0, 0, 0))
+    hem = np.repeat(arr[-8:].mean(0, keepdims=True), fh, 0) * 0.55   # the fold underneath follows the shirt's own colours
+    under = Image.fromarray(hem.clip(0, 255).astype(np.uint8)).convert("RGBA")
+    under.putalpha(body.getchannel("A"))
+    out.alpha_composite(under, (0, lip))
+    out.alpha_composite(body)
+    return out
 
 
 def background():
