@@ -38,3 +38,23 @@ def cut(src, dst, tol=95, corners_only=False):
 
 if __name__ == "__main__":
     cut(sys.argv[1], sys.argv[2], corners_only="--corners" in sys.argv)
+
+
+def cut_bridge(src, dst, tol=40, span=61):
+    """For jerseys with white parts touching the white background (white stripes/collars): bridge them horizontally."""
+    from scipy import ndimage as nd
+    im = Image.open(src).convert("RGB")
+    a = np.asarray(im).astype(np.float32)
+    fg = np.sqrt(((a - 255) ** 2).sum(2)) > tol
+    fg = nd.binary_closing(fg, structure=np.ones((1, span)))
+    fg = nd.binary_closing(fg, structure=np.ones((span // 2, 1)))
+    fg = nd.binary_closing(fg, iterations=3)
+    fg = nd.binary_fill_holes(fg)
+    lab, n = nd.label(fg)
+    fg = lab == (np.bincount(lab.ravel())[1:].argmax() + 1)
+    alpha = Image.fromarray((fg * 255).astype(np.uint8)).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(1.0))
+    out = im.convert("RGBA")
+    out.putalpha(alpha)
+    out = out.crop(alpha.getbbox())
+    out.save(dst)
+    print(dst, out.size)
