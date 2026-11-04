@@ -1,4 +1,4 @@
-"""Historia 'Buen Fin' (1080x1920): 3X2 gigante + bloque BUEN FIN, cinco jerseys reales de la tienda en abanico.
+"""Historia 'Buen Fin' (1080x1920): 5X3 gigante + bloque BUEN FIN, cinco jerseys reales de la tienda en abanico.
 
 Inspirada en el formato 'número grande | etiqueta roja + subtítulo' con fila de jerseys traslapadas.
 Uso: python3 buen_fin.py
@@ -16,11 +16,11 @@ INTER = "/usr/share/fonts/opentype/inter/"
 RED, DARK_RED, INK = (186, 24, 30), (140, 14, 20), (20, 20, 22)
 # back row first (drawn first), the centre one last so it sits in front
 FAN = [
-    ("cl_fcb_home26.png", -335, 0.72),
+    ("mex_gold.png", -335, 0.72),
     ("cl_rm_away26.png", 335, 0.72),
     ("outfit/america.png", -205, 0.85),
     ("arg06.png", 205, 0.85),
-    ("mex_gold.png", 0, 1.0),
+    ("spotify/golf.png", 0, 1.0),
 ]
 
 
@@ -69,7 +69,7 @@ def jersey(name, h):
 
 
 def headline(c, y):
-    big = gradient_text(word("3X2", "InterDisplay-Black.otf", 250, (255, 255, 255), -0.04), (214, 40, 44), DARK_RED)
+    big = gradient_text(word("5X3", "InterDisplay-Black.otf", 250, (255, 255, 255), -0.04), (214, 40, 44), DARK_RED)
     tag = word("BUEN FIN", "InterDisplay-BlackItalic.otf", 74, (255, 255, 255), -0.02)
     box = Image.new("RGBA", (tag.width + 36, tag.height + 26), RED + (255,))
     box.alpha_composite(tag, (18, 13))
@@ -94,8 +94,8 @@ def build():
     for name, dx, k in FAN:
         lay = jersey(name, int(470 * k))
         put(c, lay, W / 2 + dx, 1060 + (1 - k) * 30)
-    put(c, word("AGREGA 3 JERSEYS AL CARRITO. PAGA SOLO 2", "Inter-SemiBold.otf", 37, INK, -0.02), W / 2, 1470)
-    pill = word("3 POR $1,600  ·  ENVÍO GRATIS", "InterDisplay-BlackItalic.otf", 44, (255, 255, 255), 0.0)
+    put(c, word("AGREGA 5 JERSEYS AL CARRITO. PAGA SOLO 3", "Inter-SemiBold.otf", 37, INK, -0.02), W / 2, 1470)
+    pill = word("5 POR $2,400  ·  ENVÍO GRATIS", "InterDisplay-BlackItalic.otf", 44, (255, 255, 255), 0.0)
     box = Image.new("RGBA", (pill.width + 60, pill.height + 34), (0, 0, 0, 0))
     ImageDraw.Draw(box).rounded_rectangle([0, 0, box.width - 1, box.height - 1], radius=box.height // 2, fill=RED)
     box.alpha_composite(pill, (30, 17))
