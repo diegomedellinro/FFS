@@ -5,7 +5,7 @@ Uso: python3 historia_cr7.py
 """
 import os
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFilter
 import generar_ads as g
 from generar_ads import put, text
 from hf_ads import badge
@@ -56,6 +56,46 @@ def offer(c):
     put(c, badge(104), W / 2, 1845)
 
 
+def jersey(name, h, rot=0):
+    im = Image.open(g.SRC + "portugal/" + name).convert("RGBA")
+    im = im.crop(im.getchannel("A").getbbox())
+    im = im.resize((round(im.width * h / im.height), h), Image.LANCZOS)
+    p = 60
+    out = Image.new("RGBA", (im.width + 2 * p, im.height + 2 * p), (0, 0, 0, 0))
+    a = Image.new("L", out.size, 0)
+    a.paste(im.getchannel("A"), (p + 10, p + 20))
+    a = a.filter(ImageFilter.GaussianBlur(22)).point(lambda v: int(v * 0.55))
+    out.alpha_composite(Image.composite(Image.new("RGBA", out.size, (0, 0, 0, 255)), Image.new("RGBA", out.size, (0, 0, 0, 0)), a))
+    out.alpha_composite(im, (p, p))
+    return out.rotate(rot, Image.BICUBIC, expand=True)
+
+
+def stage():
+    """Portugal-coloured backdrop: deep red, green glow bottom-left, gold glow behind the jerseys."""
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    rgb = np.ones((H, W, 3), np.float32) * np.array([92, 8, 18], np.float32)
+    def glow(cx, cy, r, col, k):
+        g_ = np.exp(-(((xx - cx) ** 2 + (yy - cy) ** 2) / (2 * r ** 2)))[..., None]
+        return g_ * (np.array(col, np.float32) - rgb) * k
+    rgb = rgb + glow(W * 0.5, H * 0.50, 420, (210, 40, 50), 0.55)
+    rgb = rgb + glow(-100, H * 1.0, 600, (0, 90, 45), 0.85)
+    rgb = rgb + glow(W + 100, -100, 520, (0, 90, 45), 0.55)
+    v = np.linspace(0, 1, H)[:, None, None]
+    rgb = rgb * (1 - 0.55 * np.clip((v - 0.62) / 0.38, 0, 1)) + np.random.default_rng(3).normal(0, 2, (H, W, 1))
+    return Image.fromarray(rgb.clip(0, 255).astype(np.uint8)).convert("RGBA")
+
+
+def build_producto():
+    """Versión para anuncio pagado: sin foto del jugador, solo jerseys de la tienda."""
+    c = stage()
+    headline(c)
+    put(c, jersey("pt_eusebio.png", 470, 8), W / 2 - 265, 820)
+    put(c, jersey("pt2026_home.png", 470, -8), W / 2 + 265, 820)
+    put(c, jersey("pt2004_cr7.png", 620), W / 2, 900)
+    offer(c)
+    return c
+
+
 def build():
     c = base()
     headline(c)
@@ -66,4 +106,5 @@ def build():
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     build().convert("RGB").save(OUT + "story-cr7-2x1000.jpg", quality=94, subsampling=0)
+    build_producto().convert("RGB").save(OUT + "story-cr7-2x1000-producto.jpg", quality=94, subsampling=0)
     print("ok")
