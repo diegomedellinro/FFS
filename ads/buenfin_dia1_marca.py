@@ -74,7 +74,7 @@ def story():
     put(c, white("MAÑANA", 200, 0.01), W / 2, 640)
     put(c, red("ARRANCA", 200, 0.01), W / 2, 850)
     put(c, pill("3x2 Y 5x3 EN TODAS LAS JERSEYS", 46), W / 2, 1020)
-    for x, n, r, k in ((W / 2 - 300, "arg06.png", 8, 0.85), (W / 2 + 300, "encargo/tigres.png", -8, 0.85), (W / 2, "outfit/psg.png", 0, 1.0)):
+    for x, n, r, k in ((W / 2 - 300, "encargo/pumas.png", 8, 0.85), (W / 2 + 300, "encargo/tigres.png", -8, 0.85), (W / 2, "encargo/cruzazul.png", 0, 1.0)):
         put(c, mystery(n, int(330 * k), r), x, 1290 + (1 - k) * 60)
     # 1560-1740 free for the countdown sticker
     put(c, outline_pill("ACTIVA EL RECORDATORIO", 46), W / 2, 1540)
@@ -84,7 +84,7 @@ def story():
 
 # ------------------------------------------------------------------ reel
 FPS, DUR = 30, 9.0
-COMBO = [("cl_rm_third26.png", -7), ("cl_fcb_lamine.png", 0), ("encargo/atlante.png", 7)]
+COMBO = [("america110.png", -7), ("encargo/atlante.png", 0), ("encargo/chivas.png", 7)]
 BG = bg()
 J = [jersey(n, 380, r) for n, r in COMBO]
 TAG = pill("$800", 54)
