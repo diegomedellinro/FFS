@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw, ImageFilter
 import generar_ads as g
 from generar_ads import put, text, ease, back, background, INK
 from hf_ads import badge
+from chat_doctor import emoji
 from buenfin_logo import jersey, shadow
 
 OUT = g.HERE + "out/buenfin_dia1_marca/"
@@ -70,10 +71,15 @@ def mystery(name, h, rot):
 def story():
     c = bg()
     put(c, badge(230), W / 2, 300)
-    put(c, white("BUEN FIN · 13 AL 17 DE NOVIEMBRE", 40, 0.08, "MontB.ttf", GREY), W / 2, 470)
-    put(c, white("MAÑANA", 200, 0.01), W / 2, 640)
-    put(c, red("ARRANCA", 200, 0.01), W / 2, 850)
-    put(c, pill("3x2 Y 5x3 EN TODAS LAS JERSEYS", 46), W / 2, 1020)
+    put(c, white("13 AL 17 DE NOVIEMBRE", 40, 0.1, "MontB.ttf", GREY), W / 2, 470)
+    put(c, white("MAÑANA ARRANCA EL", 120, 0.01), W / 2, 610)
+    put(c, red("BUEN FIN", 250, 0.01), W / 2, 800)
+    pl = pill("ESPERA NUEVAS PROMOCIONES", 48)
+    em = emoji("🙌", 64)
+    row = Image.new("RGBA", (pl.width + 16 + em.width, max(pl.height, em.height)), (0, 0, 0, 0))
+    row.alpha_composite(pl, (0, (row.height - pl.height) // 2))
+    row.alpha_composite(em, (pl.width + 16, (row.height - em.height) // 2))
+    put(c, row, W / 2, 1010)
     for x, n, r, k in ((W / 2 - 300, "encargo/pumas.png", 8, 0.85), (W / 2 + 300, "encargo/tigres.png", -8, 0.85), (W / 2, "encargo/cruzazul.png", 0, 1.0)):
         put(c, mystery(n, int(330 * k), r), x, 1290 + (1 - k) * 60)
     # 1560-1740 free for the countdown sticker
