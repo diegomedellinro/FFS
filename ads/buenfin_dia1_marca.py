@@ -84,7 +84,7 @@ def story():
 
 # ------------------------------------------------------------------ reel
 FPS, DUR = 30, 9.0
-COMBO = [("cl_rm_third26.png", -7), ("cl_fcb_lamine.png", 0), ("encargo/chivas.png", 7)]
+COMBO = [("cl_rm_third26.png", -7), ("cl_fcb_lamine.png", 0), ("encargo/atlante.png", 7)]
 BG = bg()
 J = [jersey(n, 380, r) for n, r in COMBO]
 TAG = pill("$800", 54)
