@@ -71,8 +71,8 @@ def mystery(name, h, rot):
 def story():
     c = bg()
     put(c, badge(230), W / 2, 300)
-    put(c, white("13 AL 17 DE NOVIEMBRE", 40, 0.1, "MontB.ttf", GREY), W / 2, 470)
-    put(c, white("MAÑANA ARRANCA EL", 120, 0.01), W / 2, 610)
+    put(c, white("VIERNES 13 AL MARTES 17 DE NOVIEMBRE", 36, 0.1, "MontB.ttf", GREY), W / 2, 470)
+    put(c, white("ESTE VIERNES ARRANCA EL", 104, 0.01), W / 2, 610)
     put(c, red("BUEN FIN", 250, 0.01), W / 2, 800)
     pl = pill("ESPERA NUEVAS PROMOCIONES", 48)
     em = emoji("🙌", 64)
@@ -150,7 +150,7 @@ def frame(t):
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
-    story().convert("RGB").save(OUT + "1-story-manana-arranca.jpg", quality=94, subsampling=0)
+    story().convert("RGB").save(OUT + "1-story-este-viernes-arranca.jpg", quality=94, subsampling=0)
     out = OUT + "2-reel-combo-de-3.mp4"
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                            "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "19",
