@@ -11,7 +11,7 @@ from buenfin_logo import jersey, shadow
 
 OUT = g.HERE + "out/buenfin_2da50/"
 RED, RED2, WHITE, GREY = (226, 20, 32), (150, 10, 18), (255, 255, 255), (170, 170, 176)
-PAIR = [("cl_rm_third26.png", -6), ("cl_fcb_lamine.png", 6)]
+PAIR = [("cl_rm_third26.png", -6), ("rm1415_third.png", 6)]
 
 
 def bg(W, H):
