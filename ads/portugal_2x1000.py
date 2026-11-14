@@ -15,8 +15,8 @@ W, H = 1080, 1920
 GREEN = (0, 120, 60)
 P = g.SRC + "portugal/"
 MODELS = [  # (image, name) — the 6 products in the automatic discount
-    ("pt2004_cr7.png", "RETRO 2004 · CR7"), ("pt2026_home.png", "LOCAL 2026"), ("pt2026_away_ls_src.jpg", "VISITA 2026 M/L"),
-    ("pt_eusebio.png", "EUSÉBIO 2026"), ("pt_eusebio25.png", "EUSÉBIO 2025"), ("pt_eusebio25_ls.png", "EUSÉBIO 2025 M/L"),
+    ("pt2004_cr7.png", "RETRO 2004 · CR7"), ("pt2026_home7.png", "LOCAL 2026"), ("pt2026_away.png", "VISITA 2026"),
+    ("pt_eusebio26.png", "EUSÉBIO 2026"), ("pt_eusebio25.png", "EUSÉBIO 2025"), ("pt_eusebio25_ls.png", "EUSÉBIO 2025 M/L"),
 ]
 
 
@@ -40,7 +40,7 @@ def hero():
     put(c, red("2 x $1,000", 230, 0.01), W / 2, 530)
     put(c, white("EN JERSEYS DE PORTUGAL", 70, 0.02), W / 2, 690)
     put(c, jersey("portugal/pt2004_cr7.png", 430, -7), W / 2 - 215, 1060)
-    put(c, jersey("portugal/pt2026_home.png", 430, 7), W / 2 + 215, 1080)
+    put(c, jersey("portugal/pt2026_home7.png", 430, 7), W / 2 + 215, 1080)
     put(c, burst(110, "-$600"), W / 2 + 380, 850)
     price_block(c, 1370)
     put(c, pill("AUTOMÁTICO EN EL CARRITO · SIN CÓDIGO", 40), W / 2, 1690)
