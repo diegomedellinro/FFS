@@ -29,7 +29,23 @@ def base(n):
     return c
 
 
+LOGOS = Image.open(g.SRC + "fotos/gta_logos.jpg").convert("RGB")      # logos del usuario (contenido orgánico)
+LOGO_BOX = {"V": (0, 60, 545, 620), "VI": (0, 790, 545, 1350)}
+
+
 def era_tile(year, roman, caption):
+    """Tile with the user's game logo art and a small year pill."""
+    im = LOGOS.crop(LOGO_BOX[roman])
+    s = max(CW / im.width, CH / im.height)
+    im = im.resize((round(im.width * s), round(im.height * s)), Image.LANCZOS)
+    x0, y0 = (im.width - CW) // 2, (im.height - CH) // 2
+    t = im.crop((x0, y0, x0 + CW, y0 + CH)).convert("RGBA")
+    yp = pill(year, 40)
+    t.alpha_composite(yp, ((CW - yp.width) // 2, CH - yp.height - 24))
+    return t
+
+
+def era_tile_text(year, roman, caption):
     t = Image.new("RGBA", (CW, CH), (14, 14, 16, 255))
     r = text(roman, "Anton.ttf", 230, RED, 0.0)
     y = text(year, "Anton.ttf", 84, WHITE, 0.04)
