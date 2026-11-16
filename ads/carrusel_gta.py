@@ -13,7 +13,7 @@ from buenfin_2da50 import red, white, pill, RED, GREY, WHITE
 OUT = g.HERE + "out/carrusel_gta/"
 W, H = 1080, 1350
 PAIRS = [  # (club, antes, ahora)
-    ("REAL MADRID", "cl_rm_1314.png", "rm_home26_foto.jpg"),
+    ("REAL MADRID", "rm1314_v2.png", "rm_home26_v2.png"),
     ("FC BARCELONA", "fcb_1415_home.png", "cl_fcb_home26.png"),
     ("CLUB AMÉRICA", "viejo/ame1213.png", "america110.png"),
     ("REAL MADRID VISITA", "cl_rm_1213away.png", "cl_rm_away26.png"),
