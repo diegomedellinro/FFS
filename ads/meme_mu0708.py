@@ -33,7 +33,7 @@ def build():
     c.alpha_composite(Image.composite(Image.new("RGBA", (W, 120), (8, 8, 10, 255)), Image.new("RGBA", (W, 120), (0, 0, 0, 0)), fade), (0, top - 120))
     put(c, caption("-MIRA LO QUE TE COMPRÉ AMOR", 56), W / 2, top + 10)
     put(c, text("Man United 07/08 manga larga · Final de Moscú", "MontB.ttf", 28, GREY, 0.03), W / 2, top + 95)
-    put(c, pill("3 POR $1,600 · FOOTBALLFRENZY.SHOP", 40), W / 2, top + 175)
+    put(c, pill("FOOTBALLFRENZY.SHOP", 40), W / 2, top + 175)
     put(c, badge(110), 90, 90)
     return c
 
