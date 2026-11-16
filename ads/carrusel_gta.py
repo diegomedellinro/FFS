@@ -13,7 +13,7 @@ from buenfin_2da50 import red, white, pill, RED, GREY, WHITE
 OUT = g.HERE + "out/carrusel_gta/"
 W, H = 1080, 1350
 PAIRS = [  # (club, antes, ahora)
-    ("REAL MADRID", "cl_rm_1314.png", "cl_rm_third26.png"),
+    ("REAL MADRID", "cl_rm_1314.png", "rm_home26_foto.jpg"),
     ("FC BARCELONA", "fcb_1415_home.png", "cl_fcb_home26.png"),
     ("CLUB AMÉRICA", "viejo/ame1213.png", "america110.png"),
     ("REAL MADRID VISITA", "cl_rm_1213away.png", "cl_rm_away26.png"),
@@ -59,6 +59,9 @@ def era_tile_text(year, roman, caption):
 
 
 def jersey_tile(name):
+    if name.endswith(".jpg"):                          # real product photo: fill the cell
+        im = Image.open(g.SRC + name).convert("RGB").crop((130, 40, 1930, 1890))
+        return im.resize((CW, CH), Image.LANCZOS).convert("RGBA")
     t = Image.new("RGBA", (CW, CH), (236, 236, 232, 255))
     j = jersey(name, int(CH * 0.8), 0, dark=False)
     j.thumbnail((CW - 30, CH - 20), Image.LANCZOS)
