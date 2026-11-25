@@ -15,6 +15,7 @@ from video_como_pedir import SCR, FRAME, PW, PH, tap
 
 OUT = g.HERE + "out/reel_como_pedir/"
 FPS, DUR = 30, 15.5
+SLOW = 1.6                                             # playback stretch: >1 = slower
 BG = bg()
 CUTS = [1.2, 2.4, 3.3, 4.2, 5.1, 6.9, 8.7, 10.5, 12.3]      # scene starts (flash + shake on each)
 SLAMS = CUTS + [0.15, 12.75, 13.3]
@@ -217,8 +218,8 @@ if __name__ == "__main__":
     ff = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
                            "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-crf", "19",
                            "-preset", "medium", "-movflags", "+faststart", out], stdin=subprocess.PIPE)
-    for n in range(int(DUR * FPS)):
-        ff.stdin.write(frame(n / FPS).convert("RGB").tobytes())
+    for n in range(int(DUR * SLOW * FPS)):
+        ff.stdin.write(frame(n / FPS / SLOW).convert("RGB").tobytes())
     ff.stdin.close()
     ff.wait()
     stills = [0.9, 2.1, 3.0, 3.9, 4.9, 6.5, 8.3, 10.2, 12.0, 14.8]
